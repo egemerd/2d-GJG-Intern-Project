@@ -25,7 +25,7 @@ public class LevelConfig : ScriptableObject
     [Tooltip("Size of each cell (block size)")]
     [Range(0.5f, 3f)] public float CellSize = 1f;
     [Tooltip("Spacing between cells (gap/padding)")]
-    [Range(0f, 0.5f)] public float CellPadding = 0.1f;
+    [Range(0f, 2f)] public float CellPadding = 0.1f;
 
     [Header("Performance Settings")]
     public int objectPoolSize = 100;

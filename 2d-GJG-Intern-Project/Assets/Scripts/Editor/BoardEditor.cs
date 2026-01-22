@@ -21,6 +21,7 @@ public class BoardEditor : Editor
         if (GUILayout.Button("Generate Grid in Scene", GUILayout.Height(35)))
         {
             Undo.RecordObject(board.gameObject, "Generate Grid");
+            board.ResetPosition();
             board.GenerateGridInEditor();
             EditorUtility.SetDirty(board.gameObject);
             SceneView.RepaintAll();

@@ -129,6 +129,10 @@ public class Board : MonoBehaviour
         Debug.Log($"✓ Grid generated: {width}x{height} cells");
     }
 
+    public void ResetPosition()
+    {
+        transform.position = Vector3.zero;
+    }
     private void CreateCell(int x, int y, float spacing)
     {
         Vector3 position = new Vector3(x * spacing, y * spacing, 0);
