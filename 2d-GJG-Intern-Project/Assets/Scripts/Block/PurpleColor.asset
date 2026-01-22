@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66312edb846220844bf75684bec60d9f, type: 3}
   m_Name: PurpleColor
   m_EditorClassIdentifier: Assembly-CSharp::BlockColorData
-  ColorID: 1
-  ColorName: Blue
-  DefaultIcon: {fileID: -4624011131410558117, guid: 4572950f216658042bc5a4855c8cc4be, type: 3}
-  FirstIcon: {fileID: -8923791490832965560, guid: df43d5f03aa73954ab1fc81a3ad8aa77, type: 3}
-  SecondIcon: {fileID: -812536794617419617, guid: 6a7f31db55723404d82f495581e755b6, type: 3}
-  ThirdIcon: {fileID: -2915790821876642617, guid: d72e76166c21ed64a99141e9432f045d, type: 3}
+  ColorID: 2
+  ColorName: Purple
+  DefaultIcon: {fileID: 8161472552560778960, guid: 07de58cb1912e5348aaf82e45da6fdd1, type: 3}
+  FirstIcon: {fileID: -6416537123964203564, guid: dbb947ba102f60242a2e6e75405a00c8, type: 3}
+  SecondIcon: {fileID: -2693315669398477313, guid: 73e153c45a5ed044187ef74cfd25cfa5, type: 3}
+  ThirdIcon: {fileID: 1386842339749069192, guid: 9f475a9a9c4429547a6e9d50fb20b907, type: 3}

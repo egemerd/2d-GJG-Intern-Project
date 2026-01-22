@@ -39,10 +39,10 @@ public class GridVisualizerTool : EditorWindow
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             EditorGUILayout.LabelField("📊 Level Information", EditorStyles.boldLabel);
 
-            EditorGUILayout.LabelField($"Grid Size: {levelConfig.Rows} rows × {levelConfig.Columns} columns");
-            EditorGUILayout.LabelField($"Total Cells: {levelConfig.Rows * levelConfig.Columns}");
+            EditorGUILayout.LabelField($"Grid Size: {levelConfig.rows} rows × {levelConfig.columns} columns");
+            EditorGUILayout.LabelField($"Total Cells: {levelConfig.rows * levelConfig.columns}");
             EditorGUILayout.LabelField($"Available Colors: {levelConfig.AvailableColors.Count}");
-            EditorGUILayout.LabelField($"Thresholds: A={levelConfig.ThresholdA}, B={levelConfig.ThresholdB}, C={levelConfig.ThresholdC}");
+            EditorGUILayout.LabelField($"Thresholds: A={levelConfig.thresholdA}, B={levelConfig.thresholdB}, C={levelConfig.thresholdC}");
 
             EditorGUILayout.Space(5);
 
@@ -167,9 +167,9 @@ public class GridVisualizerTool : EditorWindow
         int cellCount = 0;
 
         // Create grid cells (bottom to top for proper blast game layout)
-        for (int y = 0; y < levelConfig.Rows; y++)
+        for (int y = 0; y < levelConfig.rows; y++)
         {
-            for (int x = 0; x < levelConfig.Columns; x++)
+            for (int x = 0; x < levelConfig.columns; x++)
             {
                 GameObject cell = new GameObject($"Cell_{x}_{y}");
                 cell.transform.SetParent(cellsParent.transform);
@@ -242,8 +242,8 @@ public class GridVisualizerTool : EditorWindow
 
         // Center the grid
         Vector3 centerOffset = new Vector3(
-            -(levelConfig.Columns * (cellSize + cellPadding)) / 2f + (cellSize / 2f),
-            -(levelConfig.Rows * (cellSize + cellPadding)) / 2f + (cellSize / 2f),
+            -(levelConfig.columns * (cellSize + cellPadding)) / 2f + (cellSize / 2f),
+            -(levelConfig.rows * (cellSize + cellPadding)) / 2f + (cellSize / 2f),
             0
         );
         gridRoot.transform.position = centerOffset;
@@ -252,12 +252,12 @@ public class GridVisualizerTool : EditorWindow
         Undo.RegisterCreatedObjectUndo(gridRoot, "Generate Grid");
         Selection.activeGameObject = gridRoot;
 
-        Debug.Log($"✅ Grid generated: {cellCount} cells ({levelConfig.Rows}×{levelConfig.Columns}) with {levelConfig.AvailableColors.Count} colors");
+        Debug.Log($"✅ Grid generated: {cellCount} cells ({levelConfig.rows}×{levelConfig.columns}) with {levelConfig.AvailableColors.Count} colors");
 
         EditorUtility.DisplayDialog(
             "Grid Generated",
             $"Successfully created grid visualization!\n\n" +
-            $"• Size: {levelConfig.Rows} × {levelConfig.Columns}\n" +
+            $"• Size: {levelConfig.rows} × {levelConfig.columns}\n" +
             $"• Total Cells: {cellCount}\n" +
             $"• Colors: {levelConfig.AvailableColors.Count}\n" +
             $"• Object: {gridRoot.name}",
@@ -279,9 +279,9 @@ public class GridVisualizerTool : EditorWindow
 
         int updatedCount = 0;
 
-        for (int y = 0; y < levelConfig.Rows; y++)
+        for (int y = 0; y < levelConfig.rows; y++)
         {
-            for (int x = 0; x < levelConfig.Columns; x++)
+            for (int x = 0; x < levelConfig.columns; x++)
             {
                 Transform cell = cellsParent.Find($"Cell_{x}_{y}");
                 if (cell == null) continue;

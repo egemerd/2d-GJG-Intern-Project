@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66312edb846220844bf75684bec60d9f, type: 3}
   m_Name: RedColor
   m_EditorClassIdentifier: Assembly-CSharp::BlockColorData
-  ColorID: 0
+  ColorID: 1
   ColorName: Red
   DefaultIcon: {fileID: 887387325851772620, guid: 1a459eca831f5a1469a04690bc89a129, type: 3}
   FirstIcon: {fileID: 5413993767572339121, guid: 9fb6ef0185d2a134bbbcfe425cbf49fb, type: 3}

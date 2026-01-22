@@ -2,27 +2,29 @@
 using System.Collections.Generic;
 using System.Collections;
 
+/// <summary>
+/// Manages runtime block spawning, gameplay mechanics, and collapse/blast system.
+/// Uses Board for grid structure and BlockPool for optimization.
+/// </summary>
 public class GridManager : MonoBehaviour
 {
-    [Header("Configuration")]
-    [SerializeField] private LevelConfig levelConfig;
-    [SerializeField] private GameObject blockPrefab;
-    [SerializeField] private Transform gridParent;
+    [Header("References")]
+    [SerializeField] private Board board;
+    [SerializeField] private BlockPool blockPool;
+    [SerializeField] private LevelConfig config;
 
-    // Grid data structure
-    private Block[,] grid;
-    private GameObject[,] blockVisuals;
+    [Header("Gameplay Settings")]
+    [SerializeField] private int minGroupSize = 2;
 
-    // Unity Grid component
-    private Grid unityGrid;
+    // Grid data (runtime blocks)
+    private Block[,] blocks;
 
     // Optimized collections (reused to avoid GC)
     private Queue<Vector2Int> floodFillQueue = new Queue<Vector2Int>(100);
     private HashSet<Vector2Int> visitedCells = new HashSet<Vector2Int>();
     private List<Block> currentGroup = new List<Block>(100);
-    private List<List<Block>> allGroups = new List<List<Block>>(50);
 
-    // Neighbor directions (up, down, left, right)
+    // Neighbor directions
     private static readonly Vector2Int[] Directions = new Vector2Int[]
     {
         new Vector2Int(0, 1),   // Up
@@ -31,164 +33,136 @@ public class GridManager : MonoBehaviour
         new Vector2Int(1, 0)    // Right
     };
 
-    public int Rows => levelConfig.Rows;
-    public int Columns => levelConfig.Columns;
+    public int Rows => board.Height;
+    public int Columns => board.Width;
+    public LevelConfig Config => config;
 
     private void Awake()
     {
-        InitializeGrid();
+        // Auto-find references if not assigned
+        if (board == null)
+            board = FindObjectOfType<Board>();
+
+        if (blockPool == null)
+            blockPool = GetComponent<BlockPool>();
+
+        if (config == null && board != null)
+            config = board.Config;
+
+        ValidateSetup();
     }
 
     private void Start()
     {
-        GenerateInitialGrid();
+        InitializeGrid();
+        SpawnAllBlocks();
         UpdateAllGroupIcons();
     }
 
-    /// <summary>
-    /// Initialize grid data structures
-    /// </summary>
+    private void ValidateSetup()
+    {
+        if (board == null)
+        {
+            Debug.LogError("GridManager: Board not found! Please create a Board in the scene.");
+            enabled = false;
+            return;
+        }
+
+        if (blockPool == null)
+        {
+            Debug.LogError("GridManager: BlockPool not found! Please add BlockPool component.");
+            enabled = false;
+            return;
+        }
+
+        if (config == null)
+        {
+            Debug.LogError("GridManager: LevelConfig not assigned!");
+            enabled = false;
+            return;
+        }
+
+        Debug.Log($"✓ GridManager initialized: {Columns}x{Rows} grid with {config.AvailableColors.Count} colors");
+    }
+
     private void InitializeGrid()
     {
-        grid = new Block[levelConfig.Rows, levelConfig.Columns];
-        blockVisuals = new GameObject[levelConfig.Rows, levelConfig.Columns];
-
-        // Create Unity Grid for positioning
-        if (gridParent == null)
-        {
-            GameObject gridObj = new GameObject("Grid");
-            gridParent = gridObj.transform;
-        }
-
-        unityGrid = gridParent.GetComponent<Grid>();
-        if (unityGrid == null)
-        {
-            unityGrid = gridParent.gameObject.AddComponent<Grid>();
-        }
-
-        // Set cell size to total spacing (cell size + padding)
-        unityGrid.cellSize = new Vector3(
-            levelConfig.TotalCellSpacing,
-            levelConfig.TotalCellSpacing,
-            0
-        );
-
-        // Initialize level config grid data
-        if (levelConfig.InitialGridData == null || levelConfig.InitialGridData.Length == 0)
-        {
-            levelConfig.InitializeGridData();
-        }
+        blocks = new Block[Columns, Rows];
     }
 
     /// <summary>
-    /// Generate initial grid from LevelConfig data
+    /// Spawn all blocks at game start
     /// </summary>
-    private void GenerateInitialGrid()
+    private void SpawnAllBlocks()
     {
-        for (int y = 0; y < levelConfig.Rows; y++)
+        for (int y = 0; y < Rows; y++)
         {
-            for (int x = 0; x < levelConfig.Columns; x++)
+            for (int x = 0; x < Columns; x++)
             {
-                int colorID = levelConfig.GetColorIDAt(x, y);
-                CreateBlock(x, y, colorID);
+                GridCellInfo cell = board.GetCell(x, y);
+                if (cell != null)
+                {
+                    SpawnBlock(x, y, cell.ColorID);
+                }
             }
         }
 
-        // Center grid
-        CenterGrid();
+        Debug.Log($"✓ Spawned {Columns * Rows} blocks");
     }
 
     /// <summary>
-    /// Create a block at specified position
+    /// Spawn a single block at grid position using object pool
     /// </summary>
-    private void CreateBlock(int x, int y, int colorID)
+    private void SpawnBlock(int x, int y, int colorID)
     {
-        // Create block data
+        // Get block from pool
+        GameObject blockObj = blockPool.GetBlock();
+        if (blockObj == null)
+        {
+            Debug.LogError($"Failed to get block from pool at ({x}, {y})");
+            return;
+        }
+
+        // Create Block data
         Block block = new Block(x, y, colorID);
-        grid[y, x] = block;
+        blocks[x, y] = block;
+        block.VisualObject = blockObj;
 
-        // Create visual
-        GameObject blockObj = Instantiate(blockPrefab, gridParent);
-        blockObj.name = $"Block_{x}_{y}";
-
-        // Position block (center of cell)
-        Vector3 worldPos = GetWorldPosition(x, y);
+        // Position block at cell center
+        Vector3 worldPos = board.GetCellWorldPosition(x, y);
         blockObj.transform.position = worldPos;
+        blockObj.name = $"Block_{x}_{y}";
 
         // Setup visual
         SpriteRenderer sr = blockObj.GetComponent<SpriteRenderer>();
-        BlockColorData colorData = levelConfig.GetColorData(colorID);
-
-        if (colorData != null && sr != null)
+        if (sr != null)
         {
-            sr.sprite = colorData.DefaultIcon;
-            sr.color = Color.white;
+            BlockColorData colorData = config.GetColorData(colorID);
+            if (colorData != null)
+            {
+                sr.sprite = colorData.DefaultIcon;
+                sr.sortingOrder = 10; // Above grid cells
+                ScaleBlockToFit(blockObj, sr);
+            }
         }
-
-        // Scale block to fit cell size (accounting for padding)
-        ScaleBlockToFit(blockObj, sr);
-
-        // Store reference
-        block.VisualObject = blockObj;
-        blockVisuals[y, x] = blockObj;
     }
 
-    /// <summary>
-    /// Scale block sprite to fit cell size with padding
-    /// </summary>
     private void ScaleBlockToFit(GameObject blockObj, SpriteRenderer sr)
     {
         if (sr == null || sr.sprite == null) return;
 
-        // Get sprite's natural size
-        Vector2 spriteSize = sr.sprite.bounds.size;
-
-        // Calculate scale to fit cell size (not total spacing, just the cell)
-        float scaleX = levelConfig.CellSize / spriteSize.x;
-        float scaleY = levelConfig.CellSize / spriteSize.y;
-
-        // Apply uniform scale (use smaller value to fit within cell)
-        float uniformScale = Mathf.Min(scaleX, scaleY);
-        blockObj.transform.localScale = new Vector3(uniformScale, uniformScale, 1f);
+        float targetSize = config.CellSize;
+        blockObj.transform.localScale = Vector3.one * targetSize;
     }
 
     /// <summary>
-    /// Get world position for grid coordinates (center of cell)
-    /// </summary>
-    private Vector3 GetWorldPosition(int x, int y)
-    {
-        // Position at grid cell using total spacing
-        float totalSpacing = levelConfig.TotalCellSpacing;
-        return new Vector3(
-            x * totalSpacing + (totalSpacing / 2f),
-            y * totalSpacing + (totalSpacing / 2f),
-            0
-        );
-    }
-
-    /// <summary>
-    /// Center the grid in view
-    /// </summary>
-    private void CenterGrid()
-    {
-        float totalSpacing = levelConfig.TotalCellSpacing;
-        Vector3 centerOffset = new Vector3(
-            -(levelConfig.Columns * totalSpacing) / 2f,
-            -(levelConfig.Rows * totalSpacing) / 2f,
-            0
-        );
-        gridParent.position = centerOffset;
-    }
-
-    /// <summary>
-    /// Find connected group using iterative flood fill (mobile optimized)
+    /// Find connected group using iterative flood fill
     /// </summary>
     public List<Block> FindConnectedGroup(int startX, int startY)
     {
         Block startBlock = GetBlock(startX, startY);
         if (startBlock == null) return null;
 
-        // Clear reusable collections
         floodFillQueue.Clear();
         visitedCells.Clear();
         currentGroup.Clear();
@@ -199,7 +173,6 @@ public class GridManager : MonoBehaviour
         floodFillQueue.Enqueue(startPos);
         visitedCells.Add(startPos);
 
-        // Iterative flood fill (no recursion)
         while (floodFillQueue.Count > 0)
         {
             Vector2Int pos = floodFillQueue.Dequeue();
@@ -209,7 +182,6 @@ public class GridManager : MonoBehaviour
             {
                 currentGroup.Add(block);
 
-                // Check all 4 neighbors
                 foreach (Vector2Int dir in Directions)
                 {
                     Vector2Int neighborPos = pos + dir;
@@ -230,70 +202,51 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        // Return group only if it has 2+ blocks
-        return currentGroup.Count >= 2 ? new List<Block>(currentGroup) : null;
+        return currentGroup.Count >= minGroupSize ? new List<Block>(currentGroup) : null;
     }
 
     /// <summary>
-    /// Update all group icons based on group sizes and thresholds
+    /// Update all group icons based on sizes
     /// </summary>
     public void UpdateAllGroupIcons()
     {
-        allGroups.Clear();
         visitedCells.Clear();
 
-        // Find all groups
-        for (int y = 0; y < levelConfig.Rows; y++)
+        for (int y = 0; y < Rows; y++)
         {
-            for (int x = 0; x < levelConfig.Columns; x++)
+            for (int x = 0; x < Columns; x++)
             {
-                Block block = GetBlock(x, y);
-                if (block == null) continue;
-
                 Vector2Int pos = new Vector2Int(x, y);
                 if (visitedCells.Contains(pos)) continue;
 
                 List<Block> group = FindConnectedGroup(x, y);
-                if (group != null && group.Count >= 2)
+                if (group != null && group.Count >= minGroupSize)
                 {
-                    allGroups.Add(group);
-                    foreach (Block b in group)
+                    int groupSize = group.Count;
+                    BlockIconType iconType = config.GetIconType(groupSize);
+
+                    foreach (Block block in group)
                     {
-                        visitedCells.Add(new Vector2Int(b.x, b.y));
+                        block.GroupSize = groupSize;
+                        block.IconType = iconType;
+                        UpdateBlockVisual(block);
+                        visitedCells.Add(new Vector2Int(block.x, block.y));
                     }
                 }
             }
         }
-
-        // Update icons based on group sizes
-        foreach (List<Block> group in allGroups)
-        {
-            int groupSize = group.Count;
-            BlockIconType iconType = levelConfig.GetIconType(groupSize);
-
-            foreach (Block block in group)
-            {
-                block.GroupSize = groupSize;
-                block.IconType = iconType;
-                UpdateBlockVisual(block);
-            }
-        }
     }
 
-    /// <summary>
-    /// Update block visual based on current state
-    /// </summary>
     private void UpdateBlockVisual(Block block)
     {
-        if (block.VisualObject == null) return;
+        if (block?.VisualObject == null) return;
 
         SpriteRenderer sr = block.VisualObject.GetComponent<SpriteRenderer>();
-        BlockColorData colorData = levelConfig.GetColorData(block.ColorID);
+        BlockColorData colorData = config.GetColorData(block.ColorID);
 
         if (colorData != null && sr != null)
         {
             sr.sprite = colorData.GetIconForType(block.IconType);
-            sr.color = Color.white;
         }
     }
 
@@ -302,20 +255,42 @@ public class GridManager : MonoBehaviour
     /// </summary>
     public void BlastGroup(List<Block> group)
     {
-        if (group == null || group.Count < 2) return;
+        if (group == null || group.Count < minGroupSize)
+        {
+            Debug.Log($"Group too small: {group?.Count ?? 0} (min: {minGroupSize})");
+            return;
+        }
 
+        StartCoroutine(BlastGroupRoutine(group));
+    }
+
+    private IEnumerator BlastGroupRoutine(List<Block> group)
+    {
         // Destroy blocks
         foreach (Block block in group)
         {
             if (block.VisualObject != null)
             {
-                Destroy(block.VisualObject);
+                blockPool.ReturnBlock(block.VisualObject);
             }
-            grid[block.y, block.x] = null;
-            blockVisuals[block.y, block.x] = null;
+            blocks[block.x, block.y] = null;
         }
 
-        StartCoroutine(ApplyGravityAndRefill());
+        yield return new WaitForSeconds(config.blastDelay);
+
+        // Apply gravity and refill
+        yield return StartCoroutine(ApplyGravityAndRefill());
+
+        // Update icons
+        UpdateAllGroupIcons();
+
+        // Check for deadlock
+        if (IsDeadlock())
+        {
+            Debug.LogWarning("Deadlock detected!");
+            yield return new WaitForSeconds(0.5f);
+            ShuffleGrid();
+        }
     }
 
     /// <summary>
@@ -323,82 +298,65 @@ public class GridManager : MonoBehaviour
     /// </summary>
     private IEnumerator ApplyGravityAndRefill()
     {
-        yield return new WaitForSeconds(levelConfig.BlastDelay);
-
-        // Apply gravity column by column
-        for (int x = 0; x < levelConfig.Columns; x++)
+        for (int x = 0; x < Columns; x++)
         {
-            int writeIndex = 0;
+            int writeY = 0;
 
-            // Compact column (move blocks down)
-            for (int y = 0; y < levelConfig.Rows; y++)
+            // Compact column (gravity)
+            for (int y = 0; y < Rows; y++)
             {
-                if (grid[y, x] != null)
+                if (blocks[x, y] != null)
                 {
-                    if (writeIndex != y)
+                    if (writeY != y)
                     {
-                        // Move block down
-                        grid[writeIndex, x] = grid[y, x];
-                        grid[y, x] = null;
+                        blocks[x, writeY] = blocks[x, y];
+                        blocks[x, y] = null;
+                        blocks[x, writeY].y = writeY;
 
-                        blockVisuals[writeIndex, x] = blockVisuals[y, x];
-                        blockVisuals[y, x] = null;
-
-                        grid[writeIndex, x].y = writeIndex;
-
-                        // Animate block to new position
-                        StartCoroutine(AnimateBlockToPosition(grid[writeIndex, x], writeIndex));
+                        Vector3 targetPos = board.GetCellWorldPosition(x, writeY);
+                        StartCoroutine(AnimateBlockToPosition(blocks[x, writeY], targetPos));
                     }
-                    writeIndex++;
+                    writeY++;
                 }
             }
 
-            // Fill empty spaces from top
-            for (int y = writeIndex; y < levelConfig.Rows; y++)
+            // Fill from top - FIXED VERSION
+            int blocksToSpawn = Rows - writeY;
+            for (int i = 0; i < blocksToSpawn; i++)
             {
-                BlockColorData randomColor = levelConfig.GetRandomColorData();
+                int y = writeY + i;
+
+                BlockColorData randomColor = config.GetRandomColorData();
                 if (randomColor != null)
                 {
-                    CreateBlock(x, y, randomColor.ColorID);
+                    SpawnBlock(x, y, randomColor.ColorID);
 
-                    // Animate block dropping from above
-                    Block newBlock = grid[y, x];
-                    newBlock.VisualObject.transform.position = GetWorldPosition(x, levelConfig.Rows + (y - writeIndex));
-                    StartCoroutine(AnimateBlockToPosition(newBlock, y));
+                    // FIXED: Calculate spawn position ABOVE the grid
+                    Vector3 spawnPos = board.GetSpawnPosition(x, i + 1);
+                    Vector3 targetPos = board.GetCellWorldPosition(x, y);
+
+                    blocks[x, y].VisualObject.transform.position = spawnPos;
+                    StartCoroutine(AnimateBlockToPosition(blocks[x, y], targetPos));
                 }
             }
         }
 
-        yield return new WaitForSeconds(0.5f);
-
-        // Update group icons
-        UpdateAllGroupIcons();
-
-        // Check for deadlock
-        if (IsDeadlock())
-        {
-            ShuffleGrid();
-        }
+        yield return new WaitForSeconds(0.3f);
     }
 
-    /// <summary>
-    /// Animate block to target position
-    /// </summary>
-    private IEnumerator AnimateBlockToPosition(Block block, int targetY)
+    private IEnumerator AnimateBlockToPosition(Block block, Vector3 targetPos)
     {
-        if (block.VisualObject == null) yield break;
+        if (block?.VisualObject == null) yield break;
 
-        Vector3 targetPos = GetWorldPosition(block.x, targetY);
         Transform blockTransform = block.VisualObject.transform;
-
-        float duration = 0.3f;
-        float elapsed = 0f;
         Vector3 startPos = blockTransform.position;
+        float duration = 0.25f;
+        float elapsed = 0f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            float t = elapsed / duration;
+            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
             blockTransform.position = Vector3.Lerp(startPos, targetPos, t);
             yield return null;
         }
@@ -407,46 +365,41 @@ public class GridManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Check if grid is in deadlock (no valid moves)
+    /// Check for deadlock
     /// </summary>
     public bool IsDeadlock()
     {
-        for (int y = 0; y < levelConfig.Rows; y++)
+        for (int y = 0; y < Rows; y++)
         {
-            for (int x = 0; x < levelConfig.Columns; x++)
+            for (int x = 0; x < Columns; x++)
             {
                 List<Block> group = FindConnectedGroup(x, y);
-                if (group != null && group.Count >= 2)
-                {
+                if (group != null && group.Count >= minGroupSize)
                     return false;
-                }
             }
         }
         return true;
     }
 
     /// <summary>
-    /// Intelligent shuffle - guarantees at least one valid group
+    /// Intelligent shuffle
     /// </summary>
     public void ShuffleGrid()
     {
-        Debug.Log("Deadlock detected! Shuffling grid...");
+        Debug.Log("Shuffling grid...");
 
         int maxAttempts = 100;
         int attempt = 0;
 
         do
         {
-            // Collect all color IDs
             List<int> colorIDs = new List<int>();
-            for (int y = 0; y < levelConfig.Rows; y++)
+            for (int y = 0; y < Rows; y++)
             {
-                for (int x = 0; x < levelConfig.Columns; x++)
+                for (int x = 0; x < Columns; x++)
                 {
-                    if (grid[y, x] != null)
-                    {
-                        colorIDs.Add(grid[y, x].ColorID);
-                    }
+                    if (blocks[x, y] != null)
+                        colorIDs.Add(blocks[x, y].ColorID);
                 }
             }
 
@@ -454,73 +407,63 @@ public class GridManager : MonoBehaviour
             for (int i = colorIDs.Count - 1; i > 0; i--)
             {
                 int j = Random.Range(0, i + 1);
-                int temp = colorIDs[i];
-                colorIDs[i] = colorIDs[j];
-                colorIDs[j] = temp;
+                (colorIDs[i], colorIDs[j]) = (colorIDs[j], colorIDs[i]);
             }
 
-            // Reassign colors
             int index = 0;
-            for (int y = 0; y < levelConfig.Rows; y++)
+            for (int y = 0; y < Rows; y++)
             {
-                for (int x = 0; x < levelConfig.Columns; x++)
+                for (int x = 0; x < Columns; x++)
                 {
-                    if (grid[y, x] != null)
+                    if (blocks[x, y] != null)
                     {
-                        grid[y, x].ColorID = colorIDs[index++];
-                        UpdateBlockVisual(grid[y, x]);
+                        blocks[x, y].ColorID = colorIDs[index++];
+                        UpdateBlockVisual(blocks[x, y]);
                     }
                 }
             }
 
             attempt++;
-
         } while (IsDeadlock() && attempt < maxAttempts);
 
         UpdateAllGroupIcons();
+        Debug.Log($"Shuffle complete after {attempt} attempts");
     }
 
-    /// <summary>
-    /// Get block at position
-    /// </summary>
     public Block GetBlock(int x, int y)
     {
         if (!IsValidPosition(x, y)) return null;
-        return grid[y, x];
+        return blocks[x, y];
     }
 
-    /// <summary>
-    /// Check if position is valid
-    /// </summary>
     public bool IsValidPosition(int x, int y)
     {
-        return x >= 0 && x < levelConfig.Columns && y >= 0 && y < levelConfig.Rows;
+        return x >= 0 && x < Columns && y >= 0 && y < Rows;
     }
 
     /// <summary>
-    /// Debug visualization
+    /// Convert world position to grid coordinates
     /// </summary>
-    private void OnDrawGizmos()
+    public Vector2Int WorldToGrid(Vector3 worldPos)
     {
-        if (grid == null || levelConfig == null) return;
+        float minDist = float.MaxValue;
+        Vector2Int closest = new Vector2Int(-1, -1);
 
-        float totalSpacing = levelConfig.TotalCellSpacing;
-        float cellSize = levelConfig.CellSize;
-
-        for (int y = 0; y < levelConfig.Rows; y++)
+        for (int y = 0; y < Rows; y++)
         {
-            for (int x = 0; x < levelConfig.Columns; x++)
+            for (int x = 0; x < Columns; x++)
             {
-                Vector3 pos = GetWorldPosition(x, y) + gridParent.position;
+                Vector3 cellPos = board.GetCellWorldPosition(x, y);
+                float dist = Vector3.Distance(worldPos, cellPos);
 
-                // Draw cell boundary (total spacing)
-                Gizmos.color = Color.gray;
-                Gizmos.DrawWireCube(pos, Vector3.one * totalSpacing * 0.95f);
-
-                // Draw actual block size (excluding padding)
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawWireCube(pos, Vector3.one * cellSize * 0.95f);
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    closest = new Vector2Int(x, y);
+                }
             }
         }
+
+        return closest;
     }
 }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66312edb846220844bf75684bec60d9f, type: 3}
   m_Name: PinkColor
   m_EditorClassIdentifier: Assembly-CSharp::BlockColorData
-  ColorID: 1
-  ColorName: Blue
-  DefaultIcon: {fileID: -4624011131410558117, guid: 4572950f216658042bc5a4855c8cc4be, type: 3}
-  FirstIcon: {fileID: -8923791490832965560, guid: df43d5f03aa73954ab1fc81a3ad8aa77, type: 3}
-  SecondIcon: {fileID: -812536794617419617, guid: 6a7f31db55723404d82f495581e755b6, type: 3}
-  ThirdIcon: {fileID: -2915790821876642617, guid: d72e76166c21ed64a99141e9432f045d, type: 3}
+  ColorID: 3
+  ColorName: Pink
+  DefaultIcon: {fileID: 742919511911846744, guid: 97259fa7afad3744ca97b6cd87497952, type: 3}
+  FirstIcon: {fileID: 3519922619171193912, guid: 357779f945e36bf4298f97dff37ff4c6, type: 3}
+  SecondIcon: {fileID: -578229812787739823, guid: 9dc483ea3c7ac864cb87fe2eb97f598a, type: 3}
+  ThirdIcon: {fileID: -7755864299962720444, guid: b5ccdca9103e2204784a042fd4780647, type: 3}

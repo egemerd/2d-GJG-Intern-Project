@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66312edb846220844bf75684bec60d9f, type: 3}
   m_Name: BlueColor
   m_EditorClassIdentifier: Assembly-CSharp::BlockColorData
-  ColorID: 1
+  ColorID: 5
   ColorName: Blue
   DefaultIcon: {fileID: -4624011131410558117, guid: 4572950f216658042bc5a4855c8cc4be, type: 3}
   FirstIcon: {fileID: -8923791490832965560, guid: df43d5f03aa73954ab1fc81a3ad8aa77, type: 3}
