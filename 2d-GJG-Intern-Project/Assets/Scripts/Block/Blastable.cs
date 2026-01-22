@@ -5,8 +5,8 @@ public class Blastable : MonoBehaviour, IPointerClickHandler
 {
     private GridManager grid;
 
-    public int GridX { get; set; }
-    public int GridY { get; set; }
+    public int gridX { get; set; }
+    public int gridY { get; set; }
 
     private void Awake()
     {
@@ -25,10 +25,19 @@ public class Blastable : MonoBehaviour, IPointerClickHandler
             Debug.LogWarning("GridManager is null!");
             return;
         }
+        Debug.Log($"🖱️ Clicked {gameObject.name} at Grid({gridX}, {gridY})");
 
-        Debug.Log($"Clicked block at ({GridX}, {GridY})");
+        // get the data of the clicked block
+        var blockData = gameObject.GetComponent<BlockMetadata>();
+        if (blockData != null)
+        {
+            gridX = blockData.GridX;
+            gridY = blockData.GridY;
+        }
 
-        var group = grid.FindConnectedGroup(GridX, GridY);
+        Debug.Log($"Clicked {gameObject.name} at Grid({gridX}, {gridY})");
+
+        var group = grid.FindConnectedGroup(gridX, gridY);
 
         // FIXED: Check for null before accessing .Count
         if (group != null && group.Count >= 2)

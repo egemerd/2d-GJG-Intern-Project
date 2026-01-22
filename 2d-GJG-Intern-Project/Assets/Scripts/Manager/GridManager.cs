@@ -145,6 +145,19 @@ public class GridManager : MonoBehaviour
                 ScaleBlockToFit(blockObj, sr);
             }
         }
+
+        BlockMetadata metadata = blockObj.GetComponent<BlockMetadata>();
+        if (metadata != null)
+        {
+            metadata.GridX = x;
+            metadata.GridY = y;
+            metadata.ColorID = colorID;
+        }
+        else
+        {
+            Debug.LogWarning($"Block_{x}_{y} is missing BlockMetadata component!");
+        }
+
     }
 
     private void ScaleBlockToFit(GameObject blockObj, SpriteRenderer sr)
@@ -312,6 +325,14 @@ public class GridManager : MonoBehaviour
                         blocks[x, writeY] = blocks[x, y];
                         blocks[x, y] = null;
                         blocks[x, writeY].y = writeY;
+
+                        BlockMetadata metadata = blocks[x, writeY].VisualObject.GetComponent<BlockMetadata>();
+                        if (metadata != null)
+                        {
+                            metadata.GridX = x;
+                            metadata.GridY = writeY;
+                            Debug.Log($"📦 Updated metadata: Block moved from ({x},{y}) to ({x},{writeY})");
+                        }
 
                         Vector3 targetPos = board.GetCellWorldPosition(x, writeY);
                         StartCoroutine(AnimateBlockToPosition(blocks[x, writeY], targetPos));
