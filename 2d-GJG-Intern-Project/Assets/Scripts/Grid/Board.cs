@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 /// <summary>
 /// Board manages the static grid structure created in the editor.
 /// GridManager uses this board to spawn runtime blocks.
@@ -106,8 +105,8 @@ public class Board : MonoBehaviour
             return;
         }
 
-        // Initialize grid data first
-        config.InitializeGridData();
+        // ✅ FORCE regenerate grid data to match current AvailableColors
+        RegenerateGridData();
 
         // Clear existing grid
         ClearGrid();
@@ -126,13 +125,34 @@ public class Board : MonoBehaviour
         }
 
         CenterGrid();
-        Debug.Log($"✓ Grid generated: {width}x{height} cells");
+        Debug.Log($"✓ Grid generated: {width}x{height} cells with {config.ColorCount} colors");
+    }
+
+    /// <summary>
+    /// Regenerate grid data to use only current AvailableColors
+    /// </summary>
+    private void RegenerateGridData()
+    {
+        if (config.AvailableColors == null || config.AvailableColors.Count == 0)
+        {
+            Debug.LogWarning("[Board] No colors available in LevelConfig!");
+            return;
+        }
+
+        // Initialize if needed
+        config.InitializeGridData();
+
+        // ✅ Force randomize with current colors
+        config.RandomizeGrid();
+
+        Debug.Log($"[Board] Regenerated grid data with {config.ColorCount} colors");
     }
 
     public void ResetPosition()
     {
         transform.position = Vector3.zero;
     }
+
     private void CreateCell(int x, int y, float spacing)
     {
         Vector3 position = new Vector3(x * spacing, y * spacing, 0);
@@ -148,11 +168,12 @@ public class Board : MonoBehaviour
 
         cellInfo.X = x;
         cellInfo.Y = y;
-        int colorID = config.GetColorIDAt(x, y);
+
+        // ✅ Get ColorID and validate it
+        int colorID = GetValidColorID(x, y);
         cellInfo.ColorID = colorID;
         cellInfo.CellSize = config.CellSize;
 
-        // IMPORTANT: Don't add SpriteRenderer to cells!
         // Only use gizmos for visualization in editor
         cellInfo.GizmoColor = GetGizmoColorForID(colorID);
 
@@ -162,6 +183,37 @@ public class Board : MonoBehaviour
         {
             DestroyImmediate(sr);
         }
+    }
+
+    /// <summary>
+    /// Get a valid ColorID for the given position
+    /// If the stored ColorID is invalid, replace with a random valid one
+    /// </summary>
+    private int GetValidColorID(int x, int y)
+    {
+        int colorID = config.GetColorIDAt(x, y);
+
+        // ✅ Validate: Check if this ColorID exists in AvailableColors
+        if (!config.IsColorAvailable(colorID))
+        {
+            Debug.LogWarning($"[Board] ColorID {colorID} at ({x},{y}) not available. Using random color.");
+
+            // Get random valid color
+            var randomColor = config.GetRandomColorData();
+            if (randomColor != null)
+            {
+                colorID = randomColor.ColorID;
+                // Update the grid data
+                config.SetColorIDAt(x, y, colorID);
+            }
+            else
+            {
+                Debug.LogError("[Board] No valid colors available!");
+                colorID = 0; // Fallback
+            }
+        }
+
+        return colorID;
     }
 
     private void CenterGrid()

@@ -12,6 +12,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Board board;
     [SerializeField] private BlockPool blockPool;
     [SerializeField] private LevelConfig config;
+    [SerializeField] private SortingOrderManager sortingOrderManager; 
+
 
     [Header("Gameplay Settings")]
     [SerializeField] private int minGroupSize = 2;
@@ -35,7 +37,7 @@ public class GridManager : MonoBehaviour
 
     public int Rows => board.Height;
     public int Columns => board.Width;
-    public LevelConfig Config => config;
+    
 
     private void Awake()
     {
@@ -48,6 +50,9 @@ public class GridManager : MonoBehaviour
 
         if (config == null && board != null)
             config = board.Config;
+
+        if (sortingOrderManager == null)
+            sortingOrderManager = GetComponent<SortingOrderManager>();
 
         ValidateSetup();
     }
@@ -141,7 +146,10 @@ public class GridManager : MonoBehaviour
             if (colorData != null)
             {
                 sr.sprite = colorData.DefaultIcon;
-                sr.sortingOrder = 10; // Above grid cells
+                if (sortingOrderManager != null)
+                {
+                    sortingOrderManager.ApplySortingOrder(sr, y);
+                }
                 ScaleBlockToFit(blockObj, sr);
             }
         }
@@ -225,6 +233,21 @@ public class GridManager : MonoBehaviour
     {
         visitedCells.Clear();
 
+        // ✅ STEP 1: Reset ALL blocks to default first
+        for (int y = 0; y < Rows; y++)
+        {
+            for (int x = 0; x < Columns; x++)
+            {
+                Block block = GetBlock(x, y);
+                if (block != null)
+                {
+                    block.GroupSize = 1;
+                    block.IconType = BlockIconType.Default;
+                }
+            }
+        }
+
+        // ✅ STEP 2: Find groups and update grouped blocks
         for (int y = 0; y < Rows; y++)
         {
             for (int x = 0; x < Columns; x++)
@@ -232,19 +255,39 @@ public class GridManager : MonoBehaviour
                 Vector2Int pos = new Vector2Int(x, y);
                 if (visitedCells.Contains(pos)) continue;
 
+                Block block = GetBlock(x, y);
+                if (block == null) continue;
+
                 List<Block> group = FindConnectedGroup(x, y);
+
                 if (group != null && group.Count >= minGroupSize)
                 {
                     int groupSize = group.Count;
                     BlockIconType iconType = config.GetIconType(groupSize);
 
-                    foreach (Block block in group)
+                    foreach (Block groupBlock in group)
                     {
-                        block.GroupSize = groupSize;
-                        block.IconType = iconType;
-                        UpdateBlockVisual(block);
-                        visitedCells.Add(new Vector2Int(block.x, block.y));
+                        groupBlock.GroupSize = groupSize;
+                        groupBlock.IconType = iconType;
+                        visitedCells.Add(new Vector2Int(groupBlock.x, groupBlock.y));
                     }
+                }
+                else
+                {
+                    visitedCells.Add(pos);
+                }
+            }
+        }
+
+        // ✅ STEP 3: Update ALL block visuals
+        for (int y = 0; y < Rows; y++)
+        {
+            for (int x = 0; x < Columns; x++)
+            {
+                Block block = GetBlock(x, y);
+                if (block != null)
+                {
+                    UpdateBlockVisual(block);
                 }
             }
         }
@@ -333,7 +376,10 @@ public class GridManager : MonoBehaviour
                             metadata.GridY = writeY;
                             Debug.Log($"📦 Updated metadata: Block moved from ({x},{y}) to ({x},{writeY})");
                         }
-
+                        if (sortingOrderManager != null)
+                        {
+                            sortingOrderManager.UpdateSortingOrder(blocks[x, writeY].VisualObject, writeY);
+                        }
                         Vector3 targetPos = board.GetCellWorldPosition(x, writeY);
                         StartCoroutine(AnimateBlockToPosition(blocks[x, writeY], targetPos));
                     }
