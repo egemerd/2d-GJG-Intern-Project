@@ -15,13 +15,6 @@ public class BlockPool : MonoBehaviour
 
     private void Awake()
     {
-        if (poolParent == null)
-        {
-            GameObject poolObj = new GameObject("BlockPool");
-            poolParent = poolObj.transform;
-            poolParent.SetParent(transform);
-        }
-
         InitializePool();
     }
 
@@ -32,7 +25,7 @@ public class BlockPool : MonoBehaviour
             CreateNewBlock();
         }
 
-        Debug.Log($"✓ Block pool initialized with {initialPoolSize} blocks");
+        Debug.Log($"[Block Pool] Block pool initialized with {initialPoolSize} blocks");
     }
 
     private GameObject CreateNewBlock()

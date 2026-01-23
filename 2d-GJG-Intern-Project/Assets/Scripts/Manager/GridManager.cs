@@ -82,7 +82,7 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        Debug.Log($"✓ GridManager initialized: {Columns}x{Rows} grid with {config.AvailableColors.Count} colors");
+        Debug.Log($"[Grid Manager] GridManager initialized: {Columns}x{Rows} grid with {config.AvailableColors.Count} colors");
     }
 
     private void InitializeGrid()
@@ -107,7 +107,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        Debug.Log($"✓ Spawned {Columns * Rows} blocks");
+        Debug.Log($"[Grid Manager] Spawned {Columns * Rows} blocks");
     }
 
     /// <summary>

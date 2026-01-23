@@ -5,6 +5,7 @@ public class Blastable : MonoBehaviour, IPointerClickHandler
 {
     private GridManager grid;
 
+    //for matching with the secelted grid block
     public int gridX { get; set; }
     public int gridY { get; set; }
 
@@ -14,7 +15,7 @@ public class Blastable : MonoBehaviour, IPointerClickHandler
 
         if (grid == null)
         {
-            Debug.LogError("Blastable: GridManager not found!");
+            Debug.LogError("[Blastable] GridManager not found!");
         }
     }
 
@@ -25,8 +26,7 @@ public class Blastable : MonoBehaviour, IPointerClickHandler
             Debug.LogWarning("GridManager is null!");
             return;
         }
-        Debug.Log($"🖱️ Clicked {gameObject.name} at Grid({gridX}, {gridY})");
-
+  
         // get the data of the clicked block
         var blockData = gameObject.GetComponent<BlockMetadata>();
         if (blockData != null)
@@ -35,20 +35,20 @@ public class Blastable : MonoBehaviour, IPointerClickHandler
             gridY = blockData.GridY;
         }
 
-        Debug.Log($"Clicked {gameObject.name} at Grid({gridX}, {gridY})");
+        Debug.Log($"[Blastable] Clicked {gameObject.name} at Grid({gridX}, {gridY})");
 
         var group = grid.FindConnectedGroup(gridX, gridY);
 
-        // FIXED: Check for null before accessing .Count
+        //Check for null before accessing .Count
         if (group != null && group.Count >= 2)
         {
-            Debug.Log($"💥 Blasting {group.Count} blocks!");
+            Debug.Log($"[Blastable] Blasting {group.Count} blocks!");
             grid.BlastGroup(group);
         }
         else
         {
             int count = group != null ? group.Count : 0;
-            Debug.Log($"⚠️ Group too small: {count} blocks (need 2+)");
+            Debug.Log($"[Blastable] Group too small: {count} blocks (need 2+)");
         }
     }
 }
