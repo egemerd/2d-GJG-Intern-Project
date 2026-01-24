@@ -89,9 +89,18 @@ public class Board : MonoBehaviour
     #region Editor Methods
 
     /// <summary>
-    /// Called from Editor to generate grid visuals
+    /// Called from Editor to generate grid visuals WITH randomization
     /// </summary>
     public void GenerateGridInEditor()
+    {
+        GenerateGridInEditor(randomize: true);
+    }
+
+    /// <summary>
+    /// Called from Editor to generate grid visuals
+    /// </summary>
+    /// <param name="randomize">If true, randomizes grid data. If false, preserves existing data.</param>
+    public void GenerateGridInEditor(bool randomize)
     {
         if (config == null)
         {
@@ -105,8 +114,16 @@ public class Board : MonoBehaviour
             return;
         }
 
-        // ✅ FORCE regenerate grid data to match current AvailableColors
-        RegenerateGridData();
+        // Initialize grid data if needed (without randomizing if not requested)
+        if (randomize)
+        {
+            RegenerateGridData();
+        }
+        else
+        {
+            // Just ensure data exists, don't randomize
+            EnsureGridDataExists();
+        }
 
         // Clear existing grid
         ClearGrid();
@@ -125,11 +142,50 @@ public class Board : MonoBehaviour
         }
 
         CenterGrid();
-        Debug.Log($"✓ Grid generated: {width}x{height} cells with {config.ColorCount} colors");
+        Debug.Log($"✓ Grid generated: {width}x{height} cells with {config.ColorCount} colors (randomize: {randomize})");
     }
 
     /// <summary>
-    /// Regenerate grid data to use only current AvailableColors
+    /// Ensure grid data exists without randomizing existing data
+    /// </summary>
+    private void EnsureGridDataExists()
+    {
+        if (config.InitialGridData == null || config.InitialGridData.Length != config.rows * config.columns)
+        {
+            config.InitializeGridData();
+        }
+        // Validate existing colors without randomizing
+        ValidateExistingColors();
+    }
+
+    /// <summary>
+    /// Validate that all color IDs in grid data are available, replace only invalid ones
+    /// </summary>
+    private void ValidateExistingColors()
+    {
+        if (config.AvailableColors == null || config.AvailableColors.Count == 0)
+        {
+            Debug.LogWarning("[Board] No colors available in LevelConfig!");
+            return;
+        }
+
+        for (int i = 0; i < config.InitialGridData.Length; i++)
+        {
+            int colorID = config.InitialGridData[i];
+            if (!config.IsColorAvailable(colorID))
+            {
+                // Only replace invalid colors
+                var randomColor = config.GetRandomColorData();
+                if (randomColor != null)
+                {
+                    config.InitialGridData[i] = randomColor.ColorID;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Regenerate grid data to use only current AvailableColors (with randomization)
     /// </summary>
     private void RegenerateGridData()
     {
@@ -142,7 +198,7 @@ public class Board : MonoBehaviour
         // Initialize if needed
         config.InitializeGridData();
 
-        // ✅ Force randomize with current colors
+        // Force randomize with current colors
         config.RandomizeGrid();
 
         Debug.Log($"[Board] Regenerated grid data with {config.ColorCount} colors");
@@ -169,7 +225,7 @@ public class Board : MonoBehaviour
         cellInfo.X = x;
         cellInfo.Y = y;
 
-        // ✅ Get ColorID and validate it
+        // Get ColorID and validate it
         int colorID = GetValidColorID(x, y);
         cellInfo.ColorID = colorID;
         cellInfo.CellSize = config.CellSize;
@@ -193,7 +249,7 @@ public class Board : MonoBehaviour
     {
         int colorID = config.GetColorIDAt(x, y);
 
-        // ✅ Validate: Check if this ColorID exists in AvailableColors
+        // Validate: Check if this ColorID exists in AvailableColors
         if (!config.IsColorAvailable(colorID))
         {
             Debug.LogWarning($"[Board] ColorID {colorID} at ({x},{y}) not available. Using random color.");
