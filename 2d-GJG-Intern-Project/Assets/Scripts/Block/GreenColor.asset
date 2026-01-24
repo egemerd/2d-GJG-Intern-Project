@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlockColorData
   ColorID: 4
   ColorName: Green
+  DisplayColor: {r: 0.5686275, g: 0.6784314, b: 0.03137255, a: 1}
   DefaultIcon: {fileID: -7364823422338184377, guid: d5c4d3ee95527b741ae914f8d4116153, type: 3}
   FirstIcon: {fileID: 3291406690555587084, guid: f952f73d9772bf84ba224f39587b8858, type: 3}
   SecondIcon: {fileID: -2176861220364285743, guid: 38a88290788e7304c90915c8dd0528fb, type: 3}

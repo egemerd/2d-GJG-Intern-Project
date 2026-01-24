@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlockColorData
   ColorID: 1
   ColorName: Red
+  DisplayColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 1}
   DefaultIcon: {fileID: 887387325851772620, guid: 1a459eca831f5a1469a04690bc89a129, type: 3}
   FirstIcon: {fileID: 5413993767572339121, guid: 9fb6ef0185d2a134bbbcfe425cbf49fb, type: 3}
   SecondIcon: {fileID: -8329150480449018202, guid: 4cf0a5b14d0401c4d8182cfcfcb4b2d6, type: 3}

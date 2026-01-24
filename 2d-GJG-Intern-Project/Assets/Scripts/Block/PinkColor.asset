@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlockColorData
   ColorID: 3
   ColorName: Pink
+  DisplayColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 1}
   DefaultIcon: {fileID: 742919511911846744, guid: 97259fa7afad3744ca97b6cd87497952, type: 3}
   FirstIcon: {fileID: 3519922619171193912, guid: 357779f945e36bf4298f97dff37ff4c6, type: 3}
   SecondIcon: {fileID: -578229812787739823, guid: 9dc483ea3c7ac864cb87fe2eb97f598a, type: 3}

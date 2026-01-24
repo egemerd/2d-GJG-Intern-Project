@@ -7,6 +7,10 @@ public class BlockColorData : ScriptableObject
     public int ColorID;
     public string ColorName;
 
+    [Header("Display Color")]
+    [Tooltip("Color used for editor gizmos and previews")]
+    public Color DisplayColor = Color.white;
+
     [Header("Icon Sprites")]
     public Sprite DefaultIcon;
     public Sprite FirstIcon;
@@ -24,4 +28,11 @@ public class BlockColorData : ScriptableObject
         };
     }
 
+    /// <summary>
+    /// Get the display color with optional alpha override
+    /// </summary>
+    public Color GetGizmoColor(float alpha = 0.6f)
+    {
+        return new Color(DisplayColor.r, DisplayColor.g, DisplayColor.b, alpha);
+    }
 }

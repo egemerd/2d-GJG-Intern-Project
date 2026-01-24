@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlockColorData
   ColorID: 2
   ColorName: Purple
+  DisplayColor: {r: 0.6784314, g: 0.050980397, b: 0.9921569, a: 1}
   DefaultIcon: {fileID: 8161472552560778960, guid: 07de58cb1912e5348aaf82e45da6fdd1, type: 3}
   FirstIcon: {fileID: -6416537123964203564, guid: dbb947ba102f60242a2e6e75405a00c8, type: 3}
   SecondIcon: {fileID: -2693315669398477313, guid: 73e153c45a5ed044187ef74cfd25cfa5, type: 3}

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlockColorData
   ColorID: 0
   ColorName: Yellow
+  DisplayColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 1}
   DefaultIcon: {fileID: 7985042018138347892, guid: 6af99200d43be9641ac235cfba20aab2, type: 3}
   FirstIcon: {fileID: 414921610477409366, guid: 5173f14317a0a754791242365982c59f, type: 3}
   SecondIcon: {fileID: -6038182108957047188, guid: 4d930e7578d04d048886b6cf866c6446, type: 3}

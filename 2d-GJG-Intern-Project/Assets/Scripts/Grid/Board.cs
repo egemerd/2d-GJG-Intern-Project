@@ -295,7 +295,18 @@ public class Board : MonoBehaviour
 
     private Color GetGizmoColorForID(int colorID)
     {
-        Color[] colors = new Color[]
+        // Try to get actual color from BlockColorData
+        if (config != null)
+        {
+            BlockColorData colorData = config.GetColorData(colorID);
+            if (colorData != null)
+            {
+                return colorData.GetGizmoColor(0.6f);
+            }
+        }
+
+        // Fallback colors if BlockColorData not found
+        Color[] fallbackColors = new Color[]
         {
             new Color(1f, 0.3f, 0.3f, 0.6f),
             new Color(0.3f, 0.6f, 1f, 0.6f),
@@ -306,7 +317,7 @@ public class Board : MonoBehaviour
             new Color(1f, 0.6f, 0.3f, 0.6f),
             new Color(0.3f, 1f, 1f, 0.6f),
         };
-        return colors[colorID % colors.Length];
+        return fallbackColors[colorID % fallbackColors.Length];
     }
 
     #endregion

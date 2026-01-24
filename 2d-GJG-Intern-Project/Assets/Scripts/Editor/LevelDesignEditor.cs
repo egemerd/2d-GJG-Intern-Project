@@ -725,17 +725,28 @@ public class LevelDesignEditor : EditorWindow
 
     private Color GetPreviewColor(int colorID)
     {
-        Color[] colors = new Color[]
+        // Try to get actual color from BlockColorData
+        if (targetConfig != null)
         {
-            new Color(1f, 0.3f, 0.3f),   // Red
-            new Color(0.3f, 0.6f, 1f),   // Blue
-            new Color(0.3f, 1f, 0.3f),   // Green
-            new Color(1f, 1f, 0.3f),     // Yellow
-            new Color(1f, 0.5f, 0.9f),   // Pink
-            new Color(0.6f, 0.3f, 1f),   // Purple
-            new Color(1f, 0.6f, 0.3f),   // Orange
-            new Color(0.3f, 1f, 1f),     // Cyan
+            BlockColorData colorData = targetConfig.GetColorData(colorID);
+            if (colorData != null)
+            {
+                return colorData.GetGizmoColor(1f);
+            }
+        }
+
+        // Fallback colors
+        Color[] fallbackColors = new Color[]
+        {
+            new Color(1f, 0.3f, 0.3f),
+            new Color(0.3f, 0.6f, 1f),
+            new Color(0.3f, 1f, 0.3f),
+            new Color(1f, 1f, 0.3f),
+            new Color(1f, 0.5f, 0.9f),
+            new Color(0.6f, 0.3f, 1f),
+            new Color(1f, 0.6f, 0.3f),
+            new Color(0.3f, 1f, 1f),
         };
-        return colors[colorID % colors.Length];
+        return fallbackColors[colorID % fallbackColors.Length];
     }
 }
