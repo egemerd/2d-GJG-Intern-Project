@@ -2,104 +2,73 @@
 using System.Collections.Generic;
 using System.Collections;
 
-/// <summary>
-/// Manages runtime block spawning, gameplay mechanics, and collapse/blast system.
-/// Uses Board for grid structure and BlockPool for optimization.
-/// </summary>
 public class GridManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Board board;
     [SerializeField] private BlockPool blockPool;
     [SerializeField] private LevelConfig config;
-    [SerializeField] private SortingOrderManager sortingOrderManager; 
-
+    [SerializeField] private SortingOrderManager sortingOrderManager;
 
     [Header("Gameplay Settings")]
     [SerializeField] private int minGroupSize = 2;
 
-    // Grid data (runtime blocks)
     private Block[,] blocks;
 
-    // Optimized collections (reused to avoid GC)
+    // Optimized collections
     private Queue<Vector2Int> floodFillQueue = new Queue<Vector2Int>(100);
     private HashSet<Vector2Int> visitedCells = new HashSet<Vector2Int>();
     private List<Block> currentGroup = new List<Block>(100);
 
-    // Neighbor directions
     private static readonly Vector2Int[] Directions = new Vector2Int[]
     {
-        new Vector2Int(0, 1),   // Up
-        new Vector2Int(0, -1),  // Down
-        new Vector2Int(-1, 0),  // Left
-        new Vector2Int(1, 0)    // Right
+        new Vector2Int(0, 1),
+        new Vector2Int(0, -1),
+        new Vector2Int(-1, 0),
+        new Vector2Int(1, 0)
     };
 
     public int Rows => board.Height;
     public int Columns => board.Width;
-    
 
     private void Awake()
     {
-        // Auto-find references if not assigned
-        if (board == null)
-            board = FindObjectOfType<Board>();
-
-        if (blockPool == null)
-            blockPool = GetComponent<BlockPool>();
-
-        if (config == null && board != null)
-            config = board.Config;
-
-        if (sortingOrderManager == null)
-            sortingOrderManager = GetComponent<SortingOrderManager>();
+        if (board == null) board = FindObjectOfType<Board>();
+        if (blockPool == null) blockPool = GetComponent<BlockPool>();
+        if (config == null && board != null) config = board.Config;
+        if (sortingOrderManager == null) sortingOrderManager = GetComponent<SortingOrderManager>();
 
         ValidateSetup();
     }
 
     private void Start()
     {
+        Debug.Log("[GridManager] === GAME START ===");
         InitializeGrid();
         SpawnAllBlocks();
         UpdateAllGroupIcons();
+        Debug.Log("[GridManager] === READY FOR INPUT ===");
     }
 
     private void ValidateSetup()
     {
-        if (board == null)
+        if (board == null || blockPool == null || config == null)
         {
-            Debug.LogError("GridManager: Board not found! Please create a Board in the scene.");
+            Debug.LogError("[GridManager] Missing required references!");
             enabled = false;
-            return;
         }
-
-        if (blockPool == null)
-        {
-            Debug.LogError("GridManager: BlockPool not found! Please add BlockPool component.");
-            enabled = false;
-            return;
-        }
-
-        if (config == null)
-        {
-            Debug.LogError("GridManager: LevelConfig not assigned!");
-            enabled = false;
-            return;
-        }
-
-        Debug.Log($"[Grid Manager] GridManager initialized: {Columns}x{Rows} grid with {config.AvailableColors.Count} colors");
     }
 
     private void InitializeGrid()
     {
         blocks = new Block[Columns, Rows];
+        Debug.Log($"[GridManager] Grid initialized: {Columns}x{Rows}");
     }
 
-    /// <summary>
-    /// Spawn all blocks at game start
-    /// </summary>
     private void SpawnAllBlocks()
     {
+        Debug.Log("[GridManager] Spawning all blocks...");
+
         for (int y = 0; y < Rows; y++)
         {
             for (int x = 0; x < Columns; x++)
@@ -107,33 +76,23 @@ public class GridManager : MonoBehaviour
                 GridCellInfo cell = board.GetCell(x, y);
                 if (cell != null)
                 {
-                    SpawnBlock(x, y, cell.ColorID);
+                    SpawnBlock(x, y, cell.ColorID, setIdleImmediately: true);
                 }
             }
         }
 
-        Debug.Log($"[Grid Manager] Spawned {Columns * Rows} blocks");
+        Debug.Log($"[GridManager] Spawned {Columns * Rows} blocks");
     }
 
-    /// <summary>
-    /// Spawn a single block at grid position using object pool
-    /// </summary>
-    private void SpawnBlock(int x, int y, int colorID)
+    private void SpawnBlock(int x, int y, int colorID, bool setIdleImmediately = false)
     {
-        // Get block from pool
         GameObject blockObj = blockPool.GetBlock();
-        if (blockObj == null)
-        {
-            Debug.LogError($"Failed to get block from pool at ({x}, {y})");
-            return;
-        }
+        if (blockObj == null) return;
 
-        // Create Block data
         Block block = new Block(x, y, colorID);
         blocks[x, y] = block;
         block.VisualObject = blockObj;
 
-        // Position block at cell center
         Vector3 worldPos = board.GetCellWorldPosition(x, y);
         blockObj.transform.position = worldPos;
         blockObj.name = $"Block_{x}_{y}";
@@ -146,14 +105,12 @@ public class GridManager : MonoBehaviour
             if (colorData != null)
             {
                 sr.sprite = colorData.DefaultIcon;
-                if (sortingOrderManager != null)
-                {
-                    sortingOrderManager.ApplySortingOrder(sr, y);
-                }
-                ScaleBlockToFit(blockObj, sr);
+                sortingOrderManager?.ApplySortingOrder(sr, y);
+                blockObj.transform.localScale = Vector3.one * config.CellSize;
             }
         }
 
+        // Setup metadata
         BlockMetadata metadata = blockObj.GetComponent<BlockMetadata>();
         if (metadata != null)
         {
@@ -161,45 +118,48 @@ public class GridManager : MonoBehaviour
             metadata.GridY = y;
             metadata.ColorID = colorID;
         }
-        else
+
+        // Bind animator to block
+        BlockAnimator animator = blockObj.GetComponent<BlockAnimator>();
+        if (animator != null)
         {
-            Debug.LogWarning($"Block_{x}_{y} is missing BlockMetadata component!");
+            animator.SetOriginalScale(blockObj.transform.localScale);
+            animator.BindToBlock(block);
         }
 
+        // Set to idle immediately for initial spawn
+        if (setIdleImmediately)
+        {
+            block.SetState(BlockState.Idle);
+        }
     }
 
-    private void ScaleBlockToFit(GameObject blockObj, SpriteRenderer sr)
-    {
-        if (sr == null || sr.sprite == null) return;
-
-        float targetSize = config.CellSize;
-        blockObj.transform.localScale = Vector3.one * targetSize;
-    }
-
-    /// <summary>
-    /// Find connected group using iterative flood fill
-    /// </summary>
     public List<Block> FindConnectedGroup(int startX, int startY)
     {
         Block startBlock = GetBlock(startX, startY);
         if (startBlock == null) return null;
+
+        // Only group idle blocks
+        if (!startBlock.CanBeGrouped())
+        {
+            Debug.Log($"[GridManager] Block at ({startX},{startY}) cannot be grouped - State: {startBlock.State}");
+            return null;
+        }
 
         floodFillQueue.Clear();
         visitedCells.Clear();
         currentGroup.Clear();
 
         int targetColorID = startBlock.ColorID;
-        Vector2Int startPos = new Vector2Int(startX, startY);
-
-        floodFillQueue.Enqueue(startPos);
-        visitedCells.Add(startPos);
+        floodFillQueue.Enqueue(new Vector2Int(startX, startY));
+        visitedCells.Add(new Vector2Int(startX, startY));
 
         while (floodFillQueue.Count > 0)
         {
             Vector2Int pos = floodFillQueue.Dequeue();
             Block block = GetBlock(pos.x, pos.y);
 
-            if (block != null && block.ColorID == targetColorID)
+            if (block != null && block.ColorID == targetColorID && block.CanBeGrouped())
             {
                 currentGroup.Add(block);
 
@@ -207,14 +167,11 @@ public class GridManager : MonoBehaviour
                 {
                     Vector2Int neighborPos = pos + dir;
 
-                    if (visitedCells.Contains(neighborPos))
-                        continue;
-
-                    if (!IsValidPosition(neighborPos.x, neighborPos.y))
-                        continue;
+                    if (visitedCells.Contains(neighborPos)) continue;
+                    if (!IsValidPosition(neighborPos.x, neighborPos.y)) continue;
 
                     Block neighbor = GetBlock(neighborPos.x, neighborPos.y);
-                    if (neighbor != null && neighbor.ColorID == targetColorID)
+                    if (neighbor != null && neighbor.ColorID == targetColorID && neighbor.CanBeGrouped())
                     {
                         floodFillQueue.Enqueue(neighborPos);
                         visitedCells.Add(neighborPos);
@@ -226,20 +183,196 @@ public class GridManager : MonoBehaviour
         return currentGroup.Count >= minGroupSize ? new List<Block>(currentGroup) : null;
     }
 
-    /// <summary>
-    /// Update all group icons based on sizes
-    /// </summary>
+    public void BlastGroup(List<Block> group)
+    {
+        if (group == null || group.Count < minGroupSize) return;
+
+        Debug.Log($"[GridManager] === BLAST START === ({group.Count} blocks)");
+
+        // Set all to Blasting state
+        foreach (Block block in group)
+        {
+            block.SetState(BlockState.Blasting);
+        }
+
+        StartCoroutine(BlastGroupRoutine(group));
+    }
+
+    private IEnumerator BlastGroupRoutine(List<Block> group)
+    {
+        // Get blast duration from first block's animator
+        float blastDuration = 0.2f; // Default
+        if (group.Count > 0 && group[0].VisualObject != null)
+        {
+            BlockAnimator animator = group[0].VisualObject.GetComponent<BlockAnimator>();
+            if (animator != null)
+            {
+                blastDuration = animator.BlastDuration;
+            }
+        }
+
+        // Set all to Blasting state (triggers animations)
+        foreach (Block block in group)
+        {
+            block.SetState(BlockState.Blasting);
+        }
+
+        // Wait for blast animations to complete
+        yield return new WaitForSeconds(blastDuration);
+
+        // Return blocks to pool
+        foreach (Block block in group)
+        {
+            if (block.VisualObject != null)
+            {
+                blockPool.ReturnBlock(block.VisualObject);
+            }
+            blocks[block.x, block.y] = null;
+        }
+
+        Debug.Log("[GridManager] Blocks destroyed");
+        yield return new WaitForSeconds(config.blastDelay);
+
+        Debug.Log("[GridManager] === GRAVITY START ===");
+        yield return StartCoroutine(ApplyGravityAndRefill());
+
+        Debug.Log("[GridManager] === UPDATING ICONS ===");
+        UpdateAllGroupIcons();
+
+        if (IsDeadlock())
+        {
+            Debug.LogWarning("[GridManager] === DEADLOCK DETECTED ===");
+            yield return new WaitForSeconds(0.5f);
+            ShuffleGrid();
+        }
+
+        Debug.Log("[GridManager] === READY FOR INPUT ===");
+    }
+
+    private IEnumerator ApplyGravityAndRefill()
+    {
+        List<Block> fallingBlocks = new List<Block>();
+        List<Block> spawningBlocks = new List<Block>();
+
+        for (int x = 0; x < Columns; x++)
+        {
+            int writeY = 0;
+
+            // Gravity - move blocks down
+            for (int y = 0; y < Rows; y++)
+            {
+                if (blocks[x, y] != null)
+                {
+                    if (writeY != y)
+                    {
+                        Block block = blocks[x, y];
+                        blocks[x, writeY] = block;
+                        blocks[x, y] = null;
+                        block.y = writeY;
+
+                        block.SetState(BlockState.Falling);
+                        fallingBlocks.Add(block);
+
+                        // Update metadata
+                        BlockMetadata metadata = block.VisualObject.GetComponent<BlockMetadata>();
+                        if (metadata != null)
+                        {
+                            metadata.GridX = x;
+                            metadata.GridY = writeY;
+                        }
+
+                        sortingOrderManager?.UpdateSortingOrder(block.VisualObject, writeY);
+                    }
+                    writeY++;
+                }
+            }
+
+            // Spawn new blocks from top
+            int blocksToSpawn = Rows - writeY;
+            for (int i = 0; i < blocksToSpawn; i++)
+            {
+                int y = writeY + i;
+
+                BlockColorData randomColor = config.GetRandomColorData();
+                if (randomColor != null)
+                {
+                    SpawnBlock(x, y, randomColor.ColorID, setIdleImmediately: false);
+
+                    Block newBlock = blocks[x, y];
+                    spawningBlocks.Add(newBlock);
+
+                    // Position above grid
+                    Vector3 spawnPos = board.GetSpawnPosition(x, i + 1);
+                    newBlock.VisualObject.transform.position = spawnPos;
+                }
+            }
+        }
+
+        Debug.Log($"[GridManager] Falling: {fallingBlocks.Count}, Spawning: {spawningBlocks.Count}");
+
+        // Animate all blocks
+        List<Coroutine> animations = new List<Coroutine>();
+
+        foreach (Block block in fallingBlocks)
+        {
+            Vector3 targetPos = board.GetCellWorldPosition(block.x, block.y);
+            animations.Add(StartCoroutine(AnimateBlock(block, targetPos)));
+        }
+
+        foreach (Block block in spawningBlocks)
+        {
+            Vector3 targetPos = board.GetCellWorldPosition(block.x, block.y);
+            animations.Add(StartCoroutine(AnimateBlock(block, targetPos)));
+        }
+
+        // Wait for all animations
+        foreach (var anim in animations)
+        {
+            yield return anim;
+        }
+
+        Debug.Log("[GridManager] === GRAVITY COMPLETE ===");
+    }
+
+    private IEnumerator AnimateBlock(Block block, Vector3 targetPos)
+    {
+        if (block?.VisualObject == null) yield break;
+
+        Transform t = block.VisualObject.transform;
+        Vector3 startPos = t.position;
+        float duration = 0.25f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            if (block.VisualObject == null) yield break;
+
+            elapsed += Time.deltaTime;
+            float progress = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+            t.position = Vector3.Lerp(startPos, targetPos, progress);
+            yield return null;
+        }
+
+        if (block.VisualObject != null)
+        {
+            t.position = targetPos;
+        }
+
+        // Animation complete - set to Idle
+        block.SetState(BlockState.Idle);
+    }
+
     public void UpdateAllGroupIcons()
     {
         visitedCells.Clear();
 
-        // ✅ STEP 1: Reset ALL blocks to default first
+        // Reset all idle blocks
         for (int y = 0; y < Rows; y++)
         {
             for (int x = 0; x < Columns; x++)
             {
                 Block block = GetBlock(x, y);
-                if (block != null)
+                if (block != null && block.CanBeGrouped())
                 {
                     block.GroupSize = 1;
                     block.IconType = BlockIconType.Default;
@@ -247,7 +380,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        // ✅ STEP 2: Find groups and update grouped blocks
+        // Find and update groups
         for (int y = 0; y < Rows; y++)
         {
             for (int x = 0; x < Columns; x++)
@@ -256,18 +389,17 @@ public class GridManager : MonoBehaviour
                 if (visitedCells.Contains(pos)) continue;
 
                 Block block = GetBlock(x, y);
-                if (block == null) continue;
+                if (block == null || !block.CanBeGrouped()) continue;
 
                 List<Block> group = FindConnectedGroup(x, y);
 
                 if (group != null && group.Count >= minGroupSize)
                 {
-                    int groupSize = group.Count;
-                    BlockIconType iconType = config.GetIconType(groupSize);
+                    BlockIconType iconType = config.GetIconType(group.Count);
 
                     foreach (Block groupBlock in group)
                     {
-                        groupBlock.GroupSize = groupSize;
+                        groupBlock.GroupSize = group.Count;
                         groupBlock.IconType = iconType;
                         visitedCells.Add(new Vector2Int(groupBlock.x, groupBlock.y));
                     }
@@ -279,222 +411,85 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        // ✅ STEP 3: Update ALL block visuals
+        // Update visuals
         for (int y = 0; y < Rows; y++)
         {
             for (int x = 0; x < Columns; x++)
             {
                 Block block = GetBlock(x, y);
-                if (block != null)
+                if (block?.VisualObject == null) continue;
+
+                SpriteRenderer sr = block.VisualObject.GetComponent<SpriteRenderer>();
+                BlockColorData colorData = config.GetColorData(block.ColorID);
+
+                if (colorData != null && sr != null)
                 {
-                    UpdateBlockVisual(block);
+                    sr.sprite = colorData.GetIconForType(block.IconType);
                 }
             }
         }
     }
 
-    private void UpdateBlockVisual(Block block)
-    {
-        if (block?.VisualObject == null) return;
-
-        SpriteRenderer sr = block.VisualObject.GetComponent<SpriteRenderer>();
-        BlockColorData colorData = config.GetColorData(block.ColorID);
-
-        if (colorData != null && sr != null)
-        {
-            sr.sprite = colorData.GetIconForType(block.IconType);
-        }
-    }
-
-    /// <summary>
-    /// Blast a group of blocks
-    /// </summary>
-    public void BlastGroup(List<Block> group)
-    {
-        if (group == null || group.Count < minGroupSize)
-        {
-            Debug.Log($"Group too small: {group?.Count ?? 0} (min: {minGroupSize})");
-            return;
-        }
-
-        StartCoroutine(BlastGroupRoutine(group));
-    }
-
-    private IEnumerator BlastGroupRoutine(List<Block> group)
-    {
-        // Destroy blocks
-        foreach (Block block in group)
-        {
-            if (block.VisualObject != null)
-            {
-                blockPool.ReturnBlock(block.VisualObject);
-            }
-            blocks[block.x, block.y] = null;
-        }
-
-        yield return new WaitForSeconds(config.blastDelay);
-
-        // Apply gravity and refill
-        yield return StartCoroutine(ApplyGravityAndRefill());
-
-        // Update icons
-        UpdateAllGroupIcons();
-
-        // Check for deadlock
-        if (IsDeadlock())
-        {
-            Debug.LogWarning("Deadlock detected!");
-            yield return new WaitForSeconds(0.5f);
-            ShuffleGrid();
-        }
-    }
-
-    /// <summary>
-    /// Apply gravity and refill empty spaces
-    /// </summary>
-    private IEnumerator ApplyGravityAndRefill()
-    {
-        for (int x = 0; x < Columns; x++)
-        {
-            int writeY = 0;
-
-            // Compact column (gravity)
-            for (int y = 0; y < Rows; y++)
-            {
-                if (blocks[x, y] != null)
-                {
-                    if (writeY != y)
-                    {
-                        blocks[x, writeY] = blocks[x, y];
-                        blocks[x, y] = null;
-                        blocks[x, writeY].y = writeY;
-
-                        BlockMetadata metadata = blocks[x, writeY].VisualObject.GetComponent<BlockMetadata>();
-                        if (metadata != null)
-                        {
-                            metadata.GridX = x;
-                            metadata.GridY = writeY;
-                            Debug.Log($"📦 Updated metadata: Block moved from ({x},{y}) to ({x},{writeY})");
-                        }
-                        if (sortingOrderManager != null)
-                        {
-                            sortingOrderManager.UpdateSortingOrder(blocks[x, writeY].VisualObject, writeY);
-                        }
-                        Vector3 targetPos = board.GetCellWorldPosition(x, writeY);
-                        StartCoroutine(AnimateBlockToPosition(blocks[x, writeY], targetPos));
-                    }
-                    writeY++;
-                }
-            }
-
-            // Fill from top - FIXED VERSION
-            int blocksToSpawn = Rows - writeY;
-            for (int i = 0; i < blocksToSpawn; i++)
-            {
-                int y = writeY + i;
-
-                BlockColorData randomColor = config.GetRandomColorData();
-                if (randomColor != null)
-                {
-                    SpawnBlock(x, y, randomColor.ColorID);
-
-                    // FIXED: Calculate spawn position ABOVE the grid
-                    Vector3 spawnPos = board.GetSpawnPosition(x, i + 1);
-                    Vector3 targetPos = board.GetCellWorldPosition(x, y);
-
-                    blocks[x, y].VisualObject.transform.position = spawnPos;
-                    StartCoroutine(AnimateBlockToPosition(blocks[x, y], targetPos));
-                }
-            }
-        }
-
-        yield return new WaitForSeconds(0.3f);
-    }
-
-    private IEnumerator AnimateBlockToPosition(Block block, Vector3 targetPos)
-    {
-        if (block?.VisualObject == null) yield break;
-
-        Transform blockTransform = block.VisualObject.transform;
-        Vector3 startPos = blockTransform.position;
-        float duration = 0.25f;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
-            blockTransform.position = Vector3.Lerp(startPos, targetPos, t);
-            yield return null;
-        }
-
-        blockTransform.position = targetPos;
-    }
-
-    /// <summary>
-    /// Check for deadlock
-    /// </summary>
     public bool IsDeadlock()
     {
         for (int y = 0; y < Rows; y++)
         {
             for (int x = 0; x < Columns; x++)
             {
-                List<Block> group = FindConnectedGroup(x, y);
-                if (group != null && group.Count >= minGroupSize)
-                    return false;
+                Block block = GetBlock(x, y);
+                if (block != null && block.CanBeGrouped())
+                {
+                    List<Block> group = FindConnectedGroup(x, y);
+                    if (group != null && group.Count >= minGroupSize)
+                        return false;
+                }
             }
         }
         return true;
     }
 
-    /// <summary>
-    /// Intelligent shuffle
-    /// </summary>
     public void ShuffleGrid()
     {
-        Debug.Log("Shuffling grid...");
+        Debug.Log("[GridManager] === SHUFFLE START ===");
 
-        int maxAttempts = 100;
-        int attempt = 0;
-
-        do
+        List<int> colorIDs = new List<int>();
+        for (int y = 0; y < Rows; y++)
         {
-            List<int> colorIDs = new List<int>();
-            for (int y = 0; y < Rows; y++)
+            for (int x = 0; x < Columns; x++)
             {
-                for (int x = 0; x < Columns; x++)
-                {
-                    if (blocks[x, y] != null)
-                        colorIDs.Add(blocks[x, y].ColorID);
-                }
+                if (blocks[x, y] != null)
+                    colorIDs.Add(blocks[x, y].ColorID);
             }
+        }
 
-            // Fisher-Yates shuffle
-            for (int i = colorIDs.Count - 1; i > 0; i--)
-            {
-                int j = Random.Range(0, i + 1);
-                (colorIDs[i], colorIDs[j]) = (colorIDs[j], colorIDs[i]);
-            }
+        // Fisher-Yates shuffle
+        for (int i = colorIDs.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            (colorIDs[i], colorIDs[j]) = (colorIDs[j], colorIDs[i]);
+        }
 
-            int index = 0;
-            for (int y = 0; y < Rows; y++)
+        int index = 0;
+        for (int y = 0; y < Rows; y++)
+        {
+            for (int x = 0; x < Columns; x++)
             {
-                for (int x = 0; x < Columns; x++)
+                if (blocks[x, y] != null)
                 {
-                    if (blocks[x, y] != null)
+                    blocks[x, y].ColorID = colorIDs[index++];
+
+                    SpriteRenderer sr = blocks[x, y].VisualObject?.GetComponent<SpriteRenderer>();
+                    BlockColorData colorData = config.GetColorData(blocks[x, y].ColorID);
+                    if (sr != null && colorData != null)
                     {
-                        blocks[x, y].ColorID = colorIDs[index++];
-                        UpdateBlockVisual(blocks[x, y]);
+                        sr.sprite = colorData.DefaultIcon;
                     }
                 }
             }
-
-            attempt++;
-        } while (IsDeadlock() && attempt < maxAttempts);
+        }
 
         UpdateAllGroupIcons();
-        Debug.Log($"Shuffle complete after {attempt} attempts");
+        Debug.Log("[GridManager] === SHUFFLE COMPLETE ===");
     }
 
     public Block GetBlock(int x, int y)
@@ -508,9 +503,6 @@ public class GridManager : MonoBehaviour
         return x >= 0 && x < Columns && y >= 0 && y < Rows;
     }
 
-    /// <summary>
-    /// Convert world position to grid coordinates
-    /// </summary>
     public Vector2Int WorldToGrid(Vector3 worldPos)
     {
         float minDist = float.MaxValue;
@@ -522,7 +514,6 @@ public class GridManager : MonoBehaviour
             {
                 Vector3 cellPos = board.GetCellWorldPosition(x, y);
                 float dist = Vector3.Distance(worldPos, cellPos);
-
                 if (dist < minDist)
                 {
                     minDist = dist;

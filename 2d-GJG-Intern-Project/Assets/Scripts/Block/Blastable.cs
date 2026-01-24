@@ -4,14 +4,12 @@ using UnityEngine.EventSystems;
 public class Blastable : MonoBehaviour, IPointerClickHandler
 {
     private GridManager grid;
-
-    //for matching with the secelted grid block
-    public int gridX { get; set; }
-    public int gridY { get; set; }
+    private BlockMetadata blockData;
 
     private void Awake()
     {
         grid = FindObjectOfType<GridManager>();
+        blockData = GetComponent<BlockMetadata>();
 
         if (grid == null)
         {
@@ -19,36 +17,51 @@ public class Blastable : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    private void OnEnable()
+    {
+        if (blockData == null)
+        {
+            blockData = GetComponent<BlockMetadata>();
+        }
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (grid == null)
+        Debug.Log($"[Blastable] Clicked at ({blockData.GridX}, {blockData.GridY})");
+
+        if (grid == null || blockData == null)
         {
-            Debug.LogWarning("GridManager is null!");
+            Debug.LogWarning("[Blastable] Missing references!");
             return;
         }
-  
-        // get the data of the clicked block
-        var blockData = gameObject.GetComponent<BlockMetadata>();
-        if (blockData != null)
+
+        // Get block and check state
+        Block block = grid.GetBlock(blockData.GridX, blockData.GridY);
+        if (block == null)
         {
-            gridX = blockData.GridX;
-            gridY = blockData.GridY;
+            Debug.LogWarning($"[Blastable] No block at ({blockData.GridX}, {blockData.GridY})");
+            return;
         }
 
-        Debug.Log($"[Blastable] Clicked {gameObject.name} at Grid({gridX}, {gridY})");
+        // Check if block can be interacted with
+        if (!block.CanInteract())
+        {
+            Debug.Log($"[Blastable] Block rejected click - State: {block.State}");
+            return;
+        }
 
-        var group = grid.FindConnectedGroup(gridX, gridY);
+        // Find group and blast
+        var group = grid.FindConnectedGroup(blockData.GridX, blockData.GridY);
 
-        //Check for null before accessing .Count
         if (group != null && group.Count >= 2)
         {
-            Debug.Log($"[Blastable] Blasting {group.Count} blocks!");
+            Debug.Log($"[Blastable] Found group of {group.Count} blocks - Blasting!");
             grid.BlastGroup(group);
         }
         else
         {
             int count = group != null ? group.Count : 0;
-            Debug.Log($"[Blastable] Group too small: {count} blocks (need 2+)");
+            Debug.Log($"[Blastable] Group too small: {count} blocks");
         }
     }
 }
