@@ -7,7 +7,8 @@ public enum BlockState
     Idle,       // Ready for interaction
     Blasting,   // Being destroyed
     Falling,    // Dropping down
-    Spawning    // Just created, animating in
+    Spawning,   // Just created, animating in
+    Shuffling   // Being shuffled to new position
 }
 
 public class Block

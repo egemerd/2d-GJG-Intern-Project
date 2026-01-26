@@ -248,7 +248,7 @@ public class GridManager : MonoBehaviour
         {
             Debug.LogWarning("[GridManager] === DEADLOCK DETECTED ===");
             yield return new WaitForSeconds(0.5f);
-            ShuffleGridWithGuarantee();
+            yield return StartCoroutine(ShuffleGridWithGuaranteeRoutine());
         }
 
         isProcessing = false;
@@ -317,13 +317,13 @@ public class GridManager : MonoBehaviour
         foreach (Block block in fallingBlocks)
         {
             Vector3 targetPos = board.GetCellWorldPosition(block.x, block.y);
-            animations.Add(StartCoroutine(AnimateBlock(block, targetPos)));
+            animations.Add(StartCoroutine(AnimateBlockFall(block, targetPos)));
         }
 
         foreach (Block block in spawningBlocks)
         {
             Vector3 targetPos = board.GetCellWorldPosition(block.x, block.y);
-            animations.Add(StartCoroutine(AnimateBlock(block, targetPos)));
+            animations.Add(StartCoroutine(AnimateBlockFall(block, targetPos)));
         }
 
         foreach (var anim in animations)
@@ -334,7 +334,7 @@ public class GridManager : MonoBehaviour
         Debug.Log("[GridManager] === GRAVITY COMPLETE ===");
     }
 
-    private IEnumerator AnimateBlock(Block block, Vector3 targetPos)
+    private IEnumerator AnimateBlockFall(Block block, Vector3 targetPos)
     {
         if (block?.VisualObject == null) yield break;
 
@@ -444,34 +444,59 @@ public class GridManager : MonoBehaviour
         return true;
     }
 
-    #region Shuffle With Guarantee
+    #region Shuffle With Real Movement Animation
 
     /// <summary>
-    /// Intelligent shuffle that guarantees at least N color groups.
+    /// Intelligent shuffle that guarantees at least N color groups with real movement animation.
+    /// Blocks physically move to their new positions.
     /// </summary>
     public void ShuffleGridWithGuarantee()
     {
+        StartCoroutine(ShuffleGridWithGuaranteeRoutine());
+    }
+
+    private IEnumerator ShuffleGridWithGuaranteeRoutine()
+    {
         Debug.Log("[Shuffle] ========================================");
-        Debug.Log($"[Shuffle] STARTING SHUFFLE WITH {guaranteedColorCount} GUARANTEED COLORS");
+        Debug.Log($"[Shuffle] STARTING REAL SHUFFLE WITH {guaranteedColorCount} GUARANTEED COLORS");
         Debug.Log("[Shuffle] ========================================");
 
-        // Step 1: Count all colors on the grid
-        Dictionary<int, int> colorCounts = CountAllColors();
-        PrintColorCounts(colorCounts);
+        // Step 1: Collect all blocks and their current positions
+        List<Block> allBlocks = new List<Block>();
+        List<Vector2Int> allPositions = new List<Vector2Int>();
 
-        // Step 2: Collect all colors as a pool
-        List<int> colorPool = CollectAllColorsAsList();
-        Debug.Log($"[Shuffle] Total blocks in pool: {colorPool.Count}");
+        for (int y = 0; y < Rows; y++)
+        {
+            for (int x = 0; x < Columns; x++)
+            {
+                Block block = blocks[x, y];
+                if (block != null)
+                {
+                    allBlocks.Add(block);
+                    allPositions.Add(new Vector2Int(x, y));
+                }
+            }
+        }
 
-        // Step 3: Get unique colors that have at least minGroupSize blocks
-        List<int> availableColors = colorCounts
-            .Where(kvp => kvp.Value >= minGroupSize)
+        Debug.Log($"[Shuffle] Total blocks to shuffle: {allBlocks.Count}");
+
+        // Step 2: Count colors for guaranteed group selection
+        Dictionary<int, List<Block>> blocksByColor = new Dictionary<int, List<Block>>();
+        foreach (Block block in allBlocks)
+        {
+            if (!blocksByColor.ContainsKey(block.ColorID))
+                blocksByColor[block.ColorID] = new List<Block>();
+            blocksByColor[block.ColorID].Add(block);
+        }
+
+        PrintColorCounts(blocksByColor);
+
+        // Step 3: Select colors to guarantee
+        List<int> availableColors = blocksByColor
+            .Where(kvp => kvp.Value.Count >= minGroupSize)
             .Select(kvp => kvp.Key)
             .ToList();
 
-        Debug.Log($"[Shuffle] Colors with enough blocks for groups: {availableColors.Count}");
-
-        // Step 4: Randomly select colors to guarantee (up to guaranteedColorCount)
         int colorsToGuarantee = Mathf.Min(guaranteedColorCount, availableColors.Count);
         List<int> selectedColors = SelectRandomColors(availableColors, colorsToGuarantee);
 
@@ -481,35 +506,34 @@ public class GridManager : MonoBehaviour
             Debug.Log($"[Shuffle]   - {GetColorName(colorID)} (ID: {colorID})");
         }
 
-        // Step 5: For each guaranteed color, reserve adjacent positions
-        HashSet<Vector2Int> allReservedPositions = new HashSet<Vector2Int>();
-        Dictionary<Vector2Int, int> reservedColorAssignments = new Dictionary<Vector2Int, int>();
+        // Step 4: Create target position assignments
+        // First, reserve adjacent positions for guaranteed colors
+        Dictionary<Block, Vector2Int> blockTargetPositions = new Dictionary<Block, Vector2Int>();
+        HashSet<Vector2Int> reservedPositions = new HashSet<Vector2Int>();
 
         foreach (int colorID in selectedColors)
         {
-            int colorCount = colorCounts[colorID];
-
-            // Random group size between minGroupSize and available count (max 5 for variety)
-            int maxGroupSize = Mathf.Min(colorCount, 5);
-            int groupSize = Random.Range(minGroupSize, maxGroupSize + 1);
+            List<Block> colorBlocks = blocksByColor[colorID];
+            int groupSize = Random.Range(minGroupSize, Mathf.Min(colorBlocks.Count, 5) + 1);
 
             Debug.Log($"[Shuffle] Finding {groupSize} adjacent positions for {GetColorName(colorID)}...");
 
-            // Find random adjacent positions
-            List<Vector2Int> adjacentPositions = FindRandomAdjacentPositions(groupSize, allReservedPositions);
+            List<Vector2Int> adjacentPositions = FindRandomAdjacentPositions(groupSize, reservedPositions);
 
             if (adjacentPositions.Count >= minGroupSize)
             {
-                Debug.Log($"[Shuffle] ✓ Reserved {adjacentPositions.Count} positions for {GetColorName(colorID)}:");
+                Debug.Log($"[Shuffle] ✓ Reserved {adjacentPositions.Count} positions for {GetColorName(colorID)}");
 
-                foreach (var pos in adjacentPositions)
+                // Assign blocks of this color to these positions
+                for (int i = 0; i < adjacentPositions.Count && i < colorBlocks.Count; i++)
                 {
-                    allReservedPositions.Add(pos);
-                    reservedColorAssignments[pos] = colorID;
-                    Debug.Log($"[Shuffle]     ({pos.x}, {pos.y}) → {GetColorName(colorID)}");
+                    Block block = colorBlocks[i];
+                    Vector2Int targetPos = adjacentPositions[i];
 
-                    // Remove one instance of this color from the pool
-                    colorPool.Remove(colorID);
+                    blockTargetPositions[block] = targetPos;
+                    reservedPositions.Add(targetPos);
+
+                    Debug.Log($"[Shuffle]   Block at ({block.x},{block.y}) → ({targetPos.x},{targetPos.y})");
                 }
             }
             else
@@ -518,55 +542,119 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        // Step 6: Shuffle remaining colors
-        ShuffleList(colorPool);
-        Debug.Log($"[Shuffle] Shuffled remaining {colorPool.Count} colors");
+        // Step 5: Assign remaining blocks to remaining positions
+        List<Vector2Int> remainingPositions = allPositions
+            .Where(pos => !reservedPositions.Contains(pos))
+            .ToList();
 
-        // Step 7: Apply colors to all positions
-        Debug.Log("[Shuffle] === APPLYING COLORS ===");
-        int poolIndex = 0;
+        List<Block> remainingBlocks = allBlocks
+            .Where(block => !blockTargetPositions.ContainsKey(block))
+            .ToList();
 
+        // Shuffle remaining positions
+        ShuffleList(remainingPositions);
+
+        Debug.Log($"[Shuffle] Assigning {remainingBlocks.Count} remaining blocks to {remainingPositions.Count} positions");
+
+        for (int i = 0; i < remainingBlocks.Count && i < remainingPositions.Count; i++)
+        {
+            blockTargetPositions[remainingBlocks[i]] = remainingPositions[i];
+        }
+
+        // Step 6: Set all blocks to shuffling state
+        foreach (Block block in allBlocks)
+        {
+            block.SetState(BlockState.Shuffling);
+        }
+
+        // Step 7: Animate all blocks moving to their new positions
+        Debug.Log("[Shuffle] === STARTING SHUFFLE ANIMATIONS ===");
+
+        float shuffleDuration = 0.5f;
+        BlockAnimator sampleAnimator = allBlocks[0].VisualObject?.GetComponent<BlockAnimator>();
+        if (sampleAnimator != null)
+        {
+            shuffleDuration = sampleAnimator.ShuffleDuration;
+        }
+
+        List<Coroutine> animations = new List<Coroutine>();
+
+        foreach (var kvp in blockTargetPositions)
+        {
+            Block block = kvp.Key;
+            Vector2Int targetGridPos = kvp.Value;
+            Vector3 targetWorldPos = board.GetCellWorldPosition(targetGridPos.x, targetGridPos.y);
+
+            // Set shuffle target for animator
+            BlockAnimator animator = block.VisualObject?.GetComponent<BlockAnimator>();
+            if (animator != null)
+            {
+                animator.SetShuffleTarget(targetWorldPos);
+            }
+
+            animations.Add(StartCoroutine(AnimateBlockShuffle(block, targetWorldPos, targetGridPos, shuffleDuration)));
+        }
+
+        // Step 8: Wait for all animations to complete
+        foreach (var anim in animations)
+        {
+            yield return anim;
+        }
+
+        // Step 9: Update the grid array with new positions
+        Debug.Log("[Shuffle] === UPDATING GRID DATA ===");
+
+        // Clear grid
         for (int y = 0; y < Rows; y++)
         {
             for (int x = 0; x < Columns; x++)
             {
-                Block block = blocks[x, y];
-                if (block == null) continue;
-
-                Vector2Int pos = new Vector2Int(x, y);
-                int oldColorID = block.ColorID;
-                int newColorID;
-                string assignType;
-
-                if (reservedColorAssignments.TryGetValue(pos, out int reservedColor))
-                {
-                    newColorID = reservedColor;
-                    assignType = "GUARANTEED";
-                }
-                else
-                {
-                    newColorID = colorPool[poolIndex++];
-                    assignType = "RANDOM";
-                }
-
-                block.ColorID = newColorID;
-
-                Debug.Log($"[Shuffle] ({x},{y}) [{assignType}]: {GetColorName(oldColorID)} → {GetColorName(newColorID)}");
-
-                UpdateBlockVisual(block);
+                blocks[x, y] = null;
             }
         }
 
-        // Step 8: Update visuals
+        // Place blocks in new positions
+        foreach (var kvp in blockTargetPositions)
+        {
+            Block block = kvp.Key;
+            Vector2Int newPos = kvp.Value;
+
+            block.x = newPos.x;
+            block.y = newPos.y;
+            blocks[newPos.x, newPos.y] = block;
+
+            // Update metadata
+            BlockMetadata metadata = block.VisualObject?.GetComponent<BlockMetadata>();
+            if (metadata != null)
+            {
+                metadata.GridX = newPos.x;
+                metadata.GridY = newPos.y;
+            }
+
+            // Update sorting order
+            sortingOrderManager?.UpdateSortingOrder(block.VisualObject, newPos.y);
+
+            // Update block name
+            if (block.VisualObject != null)
+            {
+                block.VisualObject.name = $"Block_{newPos.x}_{newPos.y}";
+            }
+
+            // Set to idle
+            block.SetState(BlockState.Idle);
+        }
+
+        // Step 10: Update visuals
         UpdateAllGroupIcons();
 
-        // Step 9: Verify and print result
+        // Step 11: Verify and print result
         PrintGridState();
 
         if (IsDeadlock())
         {
             Debug.LogError("[Shuffle] ✗ SHUFFLE FAILED - Still deadlocked! Applying emergency fix...");
             ApplyEmergencyFix();
+            UpdateAllGroupIcons();
         }
         else
         {
@@ -579,49 +667,85 @@ public class GridManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Count how many of each color exists on the grid.
+    /// Animate a block moving to its new position during shuffle.
     /// </summary>
-    private Dictionary<int, int> CountAllColors()
+    private IEnumerator AnimateBlockShuffle(Block block, Vector3 targetWorldPos, Vector2Int targetGridPos, float duration)
     {
-        Dictionary<int, int> counts = new Dictionary<int, int>();
+        if (block?.VisualObject == null) yield break;
 
-        for (int y = 0; y < Rows; y++)
+        Transform t = block.VisualObject.transform;
+        Vector3 startPos = t.position;
+        Vector3 startScale = t.localScale;
+        Vector3 punchScale = startScale * 1.15f;
+
+        // Calculate arc height based on distance
+        float distance = Vector3.Distance(startPos, targetWorldPos);
+        float arcHeight = Mathf.Max(0.3f, distance * 0.3f);
+
+        float elapsed = 0f;
+
+        Debug.Log($"[Shuffle] Animating block from ({block.x},{block.y}) to ({targetGridPos.x},{targetGridPos.y})");
+
+        while (elapsed < duration)
         {
-            for (int x = 0; x < Columns; x++)
+            if (block.VisualObject == null) yield break;
+
+            elapsed += Time.deltaTime;
+            float t_progress = elapsed / duration;
+
+            // Smooth movement
+            float moveT = Mathf.SmoothStep(0f, 1f, t_progress);
+
+            // Position with arc
+            Vector3 currentPos = Vector3.Lerp(startPos, targetWorldPos, moveT);
+
+            // Add arc (parabola)
+            float arcT = 4f * t_progress * (1f - t_progress); // Parabola peaking at 0.5
+            currentPos.y += arcT * arcHeight;
+
+            t.position = currentPos;
+
+            // Scale punch effect
+            float scaleT;
+            if (t_progress < 0.15f)
             {
-                Block block = blocks[x, y];
-                if (block != null)
-                {
-                    if (!counts.ContainsKey(block.ColorID))
-                        counts[block.ColorID] = 0;
-                    counts[block.ColorID]++;
-                }
+                // Scale up
+                scaleT = t_progress / 0.15f;
+                t.localScale = Vector3.Lerp(startScale, punchScale, scaleT);
             }
+            else if (t_progress > 0.85f)
+            {
+                // Scale down
+                scaleT = (t_progress - 0.85f) / 0.15f;
+                t.localScale = Vector3.Lerp(punchScale, startScale, scaleT);
+            }
+            else
+            {
+                // Hold punch scale
+                t.localScale = punchScale;
+            }
+
+            yield return null;
         }
 
-        return counts;
+        // Ensure final position and scale
+        if (block.VisualObject != null)
+        {
+            t.position = targetWorldPos;
+            t.localScale = startScale;
+        }
     }
 
     /// <summary>
-    /// Collect all colors as a flat list (for shuffling).
+    /// Count how many of each color exists on the grid.
     /// </summary>
-    private List<int> CollectAllColorsAsList()
+    private void PrintColorCounts(Dictionary<int, List<Block>> blocksByColor)
     {
-        List<int> colors = new List<int>();
-
-        for (int y = 0; y < Rows; y++)
+        Debug.Log("[Shuffle] === COLOR COUNTS ===");
+        foreach (var kvp in blocksByColor)
         {
-            for (int x = 0; x < Columns; x++)
-            {
-                Block block = blocks[x, y];
-                if (block != null)
-                {
-                    colors.Add(block.ColorID);
-                }
-            }
+            Debug.Log($"[Shuffle]   {GetColorName(kvp.Key)}: {kvp.Value.Count} blocks");
         }
-
-        return colors;
     }
 
     /// <summary>
@@ -639,19 +763,15 @@ public class GridManager : MonoBehaviour
     /// </summary>
     private List<Vector2Int> FindRandomAdjacentPositions(int count, HashSet<Vector2Int> excludePositions)
     {
-        // Try multiple times with different starting positions
         for (int attempt = 0; attempt < 20; attempt++)
         {
-            // Pick random starting position
             int startX = Random.Range(0, Columns);
             int startY = Random.Range(0, Rows);
             Vector2Int start = new Vector2Int(startX, startY);
 
-            // Skip if already reserved or no block there
             if (excludePositions.Contains(start) || blocks[startX, startY] == null)
                 continue;
 
-            // BFS to find adjacent positions
             List<Vector2Int> result = new List<Vector2Int>();
             Queue<Vector2Int> queue = new Queue<Vector2Int>();
             HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
@@ -663,17 +783,14 @@ public class GridManager : MonoBehaviour
             {
                 Vector2Int current = queue.Dequeue();
 
-                // Skip if reserved
                 if (excludePositions.Contains(current))
                     continue;
 
-                // Skip if no block
                 if (blocks[current.x, current.y] == null)
                     continue;
 
                 result.Add(current);
 
-                // Shuffle directions for randomness
                 List<Vector2Int> shuffledDirs = new List<Vector2Int>(Directions);
                 ShuffleList(shuffledDirs);
 
@@ -728,7 +845,6 @@ public class GridManager : MonoBehaviour
     {
         Debug.LogWarning("[Shuffle] === EMERGENCY FIX ===");
 
-        // Find any two adjacent blocks and make them the same color
         for (int y = 0; y < Rows; y++)
         {
             for (int x = 0; x < Columns - 1; x++)
@@ -742,8 +858,6 @@ public class GridManager : MonoBehaviour
                     UpdateBlockVisual(block2);
 
                     Debug.Log($"[Shuffle] Emergency: Set ({x + 1},{y}) to {GetColorName(block1.ColorID)}");
-
-                    UpdateAllGroupIcons();
                     return;
                 }
             }
@@ -778,19 +892,7 @@ public class GridManager : MonoBehaviour
     private string GetColorName(int colorID)
     {
         BlockColorData colorData = config.GetColorData(colorID);
-        return colorData != null ? colorData.name : $"Color_{colorID}";
-    }
-
-    /// <summary>
-    /// Print color counts for debugging.
-    /// </summary>
-    private void PrintColorCounts(Dictionary<int, int> counts)
-    {
-        Debug.Log("[Shuffle] === COLOR COUNTS ===");
-        foreach (var kvp in counts)
-        {
-            Debug.Log($"[Shuffle]   {GetColorName(kvp.Key)}: {kvp.Value} blocks");
-        }
+        return colorData != null ? colorData.ColorName : $"Color_{colorID}";
     }
 
     /// <summary>
