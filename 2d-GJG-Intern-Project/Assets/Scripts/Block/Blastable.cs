@@ -27,6 +27,12 @@ public class Blastable : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (!grid.CanProcessInput())
+        {
+            Debug.Log("[Blastable] Click ignored - grid is processing");
+            return;
+        }
+
         Debug.Log($"[Blastable] Clicked at ({blockData.GridX}, {blockData.GridY})");
 
         if (grid == null || blockData == null)
