@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &248674938
+--- !u!1 &16318097
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,49 +127,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 248674939}
-  - component: {fileID: 248674940}
+  - component: {fileID: 16318098}
+  - component: {fileID: 16318099}
   m_Layer: 0
-  m_Name: Cell_1_1
+  m_Name: Cell_5_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &248674939
+--- !u!4 &16318098
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248674938}
+  m_GameObject: {fileID: 16318097}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2900001, y: 1.2900001, z: 0}
+  m_LocalPosition: {x: 6.4500003, y: 7.7400007, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &248674940
+--- !u!114 &16318099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248674938}
+  m_GameObject: {fileID: 16318097}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
-  X: 1
-  Y: 1
-  ColorID: 2
+  X: 5
+  Y: 6
+  ColorID: 5
   CellSize: 1.7
-  GizmoColor: {r: 0.6784314, g: 0.050980397, b: 0.9921569, a: 0.6}
+  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
   ShowGizmo: 1
---- !u!1 &386485664
+--- !u!1 &59136170
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,47 +177,547 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 386485665}
-  - component: {fileID: 386485666}
+  - component: {fileID: 59136171}
+  - component: {fileID: 59136172}
   m_Layer: 0
-  m_Name: Cell_3_3
+  m_Name: Cell_5_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &386485665
+--- !u!4 &59136171
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386485664}
+  m_GameObject: {fileID: 59136170}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.8700004, y: 3.8700004, z: 0}
+  m_LocalPosition: {x: 6.4500003, y: 2.5800002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &386485666
+--- !u!114 &59136172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386485664}
+  m_GameObject: {fileID: 59136170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 5
+  Y: 2
+  ColorID: 2
+  CellSize: 1.7
+  GizmoColor: {r: 0.6784314, g: 0.050980397, b: 0.9921569, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &121908133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 121908134}
+  - component: {fileID: 121908135}
+  m_Layer: 0
+  m_Name: Cell_2_7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &121908134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121908133}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5800002, y: 9.030001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &121908135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121908133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 2
+  Y: 7
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &170748308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 170748309}
+  - component: {fileID: 170748310}
+  m_Layer: 0
+  m_Name: Cell_4_6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &170748309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170748308}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.1600003, y: 7.7400007, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &170748310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170748308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 4
+  Y: 6
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &200363692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 200363693}
+  - component: {fileID: 200363694}
+  m_Layer: 0
+  m_Name: Cell_2_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &200363693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200363692}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5800002, y: 5.1600003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &200363694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200363692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 2
+  Y: 4
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &200898471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 200898472}
+  - component: {fileID: 200898473}
+  m_Layer: 0
+  m_Name: Cell_0_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &200898472
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200898471}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 5.1600003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &200898473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200898471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 0
+  Y: 4
+  ColorID: 0
+  CellSize: 1.7
+  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &272378255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 272378256}
+  - component: {fileID: 272378257}
+  m_Layer: 0
+  m_Name: Cell_7_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &272378256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272378255}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.030001, y: 2.5800002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &272378257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272378255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 7
+  Y: 2
+  ColorID: 2
+  CellSize: 1.7
+  GizmoColor: {r: 0.6784314, g: 0.050980397, b: 0.9921569, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &304161483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 304161484}
+  - component: {fileID: 304161485}
+  m_Layer: 0
+  m_Name: Cell_3_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &304161484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304161483}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.8700004, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &304161485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304161483}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
   X: 3
-  Y: 3
-  ColorID: 3
+  Y: 0
+  ColorID: 2
   CellSize: 1.7
-  GizmoColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 0.6}
+  GizmoColor: {r: 0.6784314, g: 0.050980397, b: 0.9921569, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &332080613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 332080614}
+  - component: {fileID: 332080615}
+  m_Layer: 0
+  m_Name: Cell_1_6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &332080614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332080613}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.2900001, y: 7.7400007, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &332080615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 332080613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 1
+  Y: 6
+  ColorID: 4
+  CellSize: 1.7
+  GizmoColor: {r: 0.5686275, g: 0.6784314, b: 0.03137255, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &343774854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343774855}
+  - component: {fileID: 343774856}
+  m_Layer: 0
+  m_Name: Cell_1_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &343774855
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343774854}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.2900001, y: 2.5800002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &343774856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343774854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 1
+  Y: 2
+  ColorID: 0
+  CellSize: 1.7
+  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &434991099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 434991100}
+  - component: {fileID: 434991101}
+  m_Layer: 0
+  m_Name: Cell_7_6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &434991100
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434991099}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.030001, y: 7.7400007, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &434991101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434991099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 7
+  Y: 6
+  ColorID: 5
+  CellSize: 1.7
+  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &504915516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 504915517}
+  - component: {fileID: 504915518}
+  m_Layer: 0
+  m_Name: Cell_3_7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &504915517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504915516}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.8700004, y: 9.030001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &504915518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504915516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 3
+  Y: 7
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
   ShowGizmo: 1
 --- !u!1 &519420028
 GameObject:
@@ -373,7 +873,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
---- !u!1 &558517278
+--- !u!1 &546856856
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -381,49 +881,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 558517279}
-  - component: {fileID: 558517280}
+  - component: {fileID: 546856857}
+  - component: {fileID: 546856858}
   m_Layer: 0
-  m_Name: Cell_1_2
+  m_Name: Cell_6_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &558517279
+--- !u!4 &546856857
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558517278}
+  m_GameObject: {fileID: 546856856}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2900001, y: 2.5800002, z: 0}
+  m_LocalPosition: {x: 7.7400007, y: 5.1600003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &558517280
+--- !u!114 &546856858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558517278}
+  m_GameObject: {fileID: 546856856}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
-  X: 1
-  Y: 2
-  ColorID: 4
+  X: 6
+  Y: 4
+  ColorID: 1
   CellSize: 1.7
-  GizmoColor: {r: 0.5686275, g: 0.6784314, b: 0.03137255, a: 0.6}
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
   ShowGizmo: 1
---- !u!1 &611758146
+--- !u!1 &602508038
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -431,47 +931,97 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 611758147}
-  - component: {fileID: 611758148}
+  - component: {fileID: 602508039}
+  - component: {fileID: 602508040}
   m_Layer: 0
-  m_Name: Cell_1_3
+  m_Name: Cell_4_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &611758147
+--- !u!4 &602508039
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611758146}
+  m_GameObject: {fileID: 602508038}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2900001, y: 3.8700004, z: 0}
+  m_LocalPosition: {x: 5.1600003, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &611758148
+--- !u!114 &602508040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611758146}
+  m_GameObject: {fileID: 602508038}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
-  X: 1
-  Y: 3
-  ColorID: 4
+  X: 4
+  Y: 0
+  ColorID: 1
   CellSize: 1.7
-  GizmoColor: {r: 0.5686275, g: 0.6784314, b: 0.03137255, a: 0.6}
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &610570383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 610570384}
+  - component: {fileID: 610570385}
+  m_Layer: 0
+  m_Name: Cell_0_5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &610570384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610570383}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.4500003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &610570385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610570383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 0
+  Y: 5
+  ColorID: 3
+  CellSize: 1.7
+  GizmoColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 0.6}
   ShowGizmo: 1
 --- !u!1 &619394800
 GameObject:
@@ -557,7 +1107,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &808394489
+--- !u!1 &621791621
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -565,8 +1115,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 808394490}
-  - component: {fileID: 808394491}
+  - component: {fileID: 621791622}
+  - component: {fileID: 621791623}
   m_Layer: 0
   m_Name: Cell_2_2
   m_TagString: Untagged
@@ -574,13 +1124,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &808394490
+--- !u!4 &621791622
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808394489}
+  m_GameObject: {fileID: 621791621}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.5800002, y: 2.5800002, z: 0}
@@ -589,13 +1139,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &808394491
+--- !u!114 &621791623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808394489}
+  m_GameObject: {fileID: 621791621}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
@@ -603,11 +1153,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
   X: 2
   Y: 2
-  ColorID: 5
+  ColorID: 1
   CellSize: 1.7
-  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
   ShowGizmo: 1
---- !u!1 &866907228
+--- !u!1 &636455969
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -615,8 +1165,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 866907229}
-  - component: {fileID: 866907230}
+  - component: {fileID: 636455970}
+  - component: {fileID: 636455971}
+  m_Layer: 0
+  m_Name: Cell_4_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &636455970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636455969}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.1600003, y: 2.5800002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &636455971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636455969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 4
+  Y: 2
+  ColorID: 5
+  CellSize: 1.7
+  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &638589920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 638589921}
+  - component: {fileID: 638589922}
   m_Layer: 0
   m_Name: Cell_0_3
   m_TagString: Untagged
@@ -624,13 +1224,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &866907229
+--- !u!4 &638589921
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866907228}
+  m_GameObject: {fileID: 638589920}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 3.8700004, z: 0}
@@ -639,13 +1239,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &866907230
+--- !u!114 &638589922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866907228}
+  m_GameObject: {fileID: 638589920}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
@@ -653,11 +1253,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
   X: 0
   Y: 3
-  ColorID: 4
+  ColorID: 1
   CellSize: 1.7
-  GizmoColor: {r: 0.5686275, g: 0.6784314, b: 0.03137255, a: 0.6}
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
   ShowGizmo: 1
---- !u!1 &899410917
+--- !u!1 &692025397
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -665,8 +1265,758 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 899410918}
-  - component: {fileID: 899410919}
+  - component: {fileID: 692025398}
+  - component: {fileID: 692025399}
+  m_Layer: 0
+  m_Name: Cell_0_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &692025398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692025397}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &692025399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692025397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 0
+  Y: 0
+  ColorID: 3
+  CellSize: 1.7
+  GizmoColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &705684144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 705684145}
+  - component: {fileID: 705684146}
+  m_Layer: 0
+  m_Name: Cell_7_7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &705684145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705684144}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.030001, y: 9.030001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &705684146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705684144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 7
+  Y: 7
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &715602569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 715602570}
+  - component: {fileID: 715602571}
+  m_Layer: 0
+  m_Name: Cell_5_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &715602570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715602569}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.4500003, y: 3.8700004, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &715602571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715602569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 5
+  Y: 3
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &731504084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 731504085}
+  - component: {fileID: 731504086}
+  m_Layer: 0
+  m_Name: Cell_5_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &731504085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731504084}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.4500003, y: 5.1600003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &731504086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731504084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 5
+  Y: 4
+  ColorID: 3
+  CellSize: 1.7
+  GizmoColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &737788096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 737788097}
+  - component: {fileID: 737788098}
+  m_Layer: 0
+  m_Name: Cell_4_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &737788097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737788096}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.1600003, y: 5.1600003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &737788098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737788096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 4
+  Y: 4
+  ColorID: 4
+  CellSize: 1.7
+  GizmoColor: {r: 0.5686275, g: 0.6784314, b: 0.03137255, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &899988362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 899988363}
+  - component: {fileID: 899988364}
+  m_Layer: 0
+  m_Name: Cell_1_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &899988363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899988362}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.2900001, y: 1.2900001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &899988364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899988362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 1
+  Y: 1
+  ColorID: 3
+  CellSize: 1.7
+  GizmoColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &906162424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 906162425}
+  - component: {fileID: 906162426}
+  m_Layer: 0
+  m_Name: Cell_6_5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &906162425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906162424}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.7400007, y: 6.4500003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &906162426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906162424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 6
+  Y: 5
+  ColorID: 0
+  CellSize: 1.7
+  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &922813073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 922813074}
+  - component: {fileID: 922813075}
+  m_Layer: 0
+  m_Name: Cell_1_7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &922813074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922813073}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.2900001, y: 9.030001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &922813075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922813073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 1
+  Y: 7
+  ColorID: 3
+  CellSize: 1.7
+  GizmoColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &926360851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 926360852}
+  - component: {fileID: 926360853}
+  m_Layer: 0
+  m_Name: Cell_6_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &926360852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926360851}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.7400007, y: 1.2900001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &926360853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926360851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 6
+  Y: 1
+  ColorID: 2
+  CellSize: 1.7
+  GizmoColor: {r: 0.6784314, g: 0.050980397, b: 0.9921569, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1041353872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1041353873}
+  - component: {fileID: 1041353874}
+  m_Layer: 0
+  m_Name: Cell_5_7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1041353873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041353872}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.4500003, y: 9.030001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1041353874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041353872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 5
+  Y: 7
+  ColorID: 3
+  CellSize: 1.7
+  GizmoColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1062364768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062364769}
+  - component: {fileID: 1062364770}
+  m_Layer: 0
+  m_Name: Cell_6_6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1062364769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062364768}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.7400007, y: 7.7400007, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1062364770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062364768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 6
+  Y: 6
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1104872401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1104872402}
+  - component: {fileID: 1104872403}
+  m_Layer: 0
+  m_Name: Cell_6_7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1104872402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104872401}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.7400007, y: 9.030001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1104872403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104872401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 6
+  Y: 7
+  ColorID: 5
+  CellSize: 1.7
+  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1142540482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1142540483}
+  - component: {fileID: 1142540484}
+  m_Layer: 0
+  m_Name: Cell_0_7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1142540483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142540482}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 9.030001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1142540484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142540482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 0
+  Y: 7
+  ColorID: 4
+  CellSize: 1.7
+  GizmoColor: {r: 0.5686275, g: 0.6784314, b: 0.03137255, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1166076299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1166076300}
+  - component: {fileID: 1166076301}
+  m_Layer: 0
+  m_Name: Cell_7_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1166076300
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166076299}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.030001, y: 5.1600003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1166076301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166076299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 7
+  Y: 4
+  ColorID: 0
+  CellSize: 1.7
+  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1174472414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1174472415}
+  - component: {fileID: 1174472416}
+  m_Layer: 0
+  m_Name: Cell_2_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1174472415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174472414}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5800002, y: 3.8700004, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1174472416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174472414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 2
+  Y: 3
+  ColorID: 4
+  CellSize: 1.7
+  GizmoColor: {r: 0.5686275, g: 0.6784314, b: 0.03137255, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1177062599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1177062600}
+  - component: {fileID: 1177062601}
   m_Layer: 0
   m_Name: Cell_3_1
   m_TagString: Untagged
@@ -674,13 +2024,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &899410918
+--- !u!4 &1177062600
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 899410917}
+  m_GameObject: {fileID: 1177062599}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.8700004, y: 1.2900001, z: 0}
@@ -689,13 +2039,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &899410919
+--- !u!114 &1177062601
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 899410917}
+  m_GameObject: {fileID: 1177062599}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
@@ -707,7 +2057,7 @@ MonoBehaviour:
   CellSize: 1.7
   GizmoColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 0.6}
   ShowGizmo: 1
---- !u!1 &918358980
+--- !u!1 &1189177940
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -715,49 +2065,149 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 918358981}
-  - component: {fileID: 918358982}
+  - component: {fileID: 1189177941}
+  - component: {fileID: 1189177942}
   m_Layer: 0
-  m_Name: Cell_2_3
+  m_Name: Cell_1_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &918358981
+--- !u!4 &1189177941
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918358980}
+  m_GameObject: {fileID: 1189177940}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5800002, y: 3.8700004, z: 0}
+  m_LocalPosition: {x: 1.2900001, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &918358982
+--- !u!114 &1189177942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918358980}
+  m_GameObject: {fileID: 1189177940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 1
+  Y: 0
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1195254913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1195254914}
+  - component: {fileID: 1195254915}
+  m_Layer: 0
+  m_Name: Cell_3_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1195254914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195254913}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.8700004, y: 3.8700004, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1195254915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195254913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 3
+  Y: 3
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1211709100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1211709101}
+  - component: {fileID: 1211709102}
+  m_Layer: 0
+  m_Name: Cell_2_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1211709101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211709100}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5800002, y: 1.2900001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1211709102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211709100}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
   X: 2
-  Y: 3
-  ColorID: 0
+  Y: 1
+  ColorID: 2
   CellSize: 1.7
-  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
+  GizmoColor: {r: 0.6784314, g: 0.050980397, b: 0.9921569, a: 0.6}
   ShowGizmo: 1
---- !u!1 &962712162
+--- !u!1 &1263998852
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -765,47 +2215,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 962712163}
-  - component: {fileID: 962712164}
+  - component: {fileID: 1263998853}
+  - component: {fileID: 1263998854}
   m_Layer: 0
-  m_Name: Cell_0_1
+  m_Name: Cell_4_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &962712163
+--- !u!4 &1263998853
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962712162}
+  m_GameObject: {fileID: 1263998852}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2900001, z: 0}
+  m_LocalPosition: {x: 5.1600003, y: 9.030001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &962712164
+--- !u!114 &1263998854
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962712162}
+  m_GameObject: {fileID: 1263998852}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
-  X: 0
-  Y: 1
-  ColorID: 5
+  X: 4
+  Y: 7
+  ColorID: 0
   CellSize: 1.7
-  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
+  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
   ShowGizmo: 1
 --- !u!1 &1266299573
 GameObject:
@@ -838,7 +2288,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1294943615
+--- !u!1 &1287290816
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -846,8 +2296,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1294943616}
-  - component: {fileID: 1294943617}
+  - component: {fileID: 1287290817}
+  - component: {fileID: 1287290818}
+  m_Layer: 0
+  m_Name: Cell_2_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1287290817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287290816}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5800002, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1287290818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287290816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 2
+  Y: 0
+  ColorID: 0
+  CellSize: 1.7
+  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1294634668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1294634669}
+  - component: {fileID: 1294634670}
   m_Layer: 0
   m_Name: Cell_0_2
   m_TagString: Untagged
@@ -855,13 +2355,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1294943616
+--- !u!4 &1294634669
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294943615}
+  m_GameObject: {fileID: 1294634668}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2.5800002, z: 0}
@@ -870,13 +2370,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1294943617
+--- !u!114 &1294634670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294943615}
+  m_GameObject: {fileID: 1294634668}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
@@ -888,7 +2388,7 @@ MonoBehaviour:
   CellSize: 1.7
   GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
   ShowGizmo: 1
---- !u!1 &1397740136
+--- !u!1 &1328059475
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -896,44 +2396,394 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1397740137}
-  - component: {fileID: 1397740138}
+  - component: {fileID: 1328059476}
+  - component: {fileID: 1328059477}
   m_Layer: 0
-  m_Name: Cell_3_0
+  m_Name: Cell_1_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1397740137
+--- !u!4 &1328059476
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397740136}
+  m_GameObject: {fileID: 1328059475}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.8700004, y: 0, z: 0}
+  m_LocalPosition: {x: 1.2900001, y: 6.4500003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1397740138
+--- !u!114 &1328059477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397740136}
+  m_GameObject: {fileID: 1328059475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 1
+  Y: 5
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1334205653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1334205654}
+  - component: {fileID: 1334205655}
+  m_Layer: 0
+  m_Name: Cell_5_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1334205654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334205653}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.4500003, y: 1.2900001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1334205655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334205653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 5
+  Y: 1
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1379344899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1379344900}
+  - component: {fileID: 1379344901}
+  m_Layer: 0
+  m_Name: Cell_4_5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1379344900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379344899}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.1600003, y: 6.4500003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1379344901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379344899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 4
+  Y: 5
+  ColorID: 0
+  CellSize: 1.7
+  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1399243616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1399243617}
+  - component: {fileID: 1399243618}
+  m_Layer: 0
+  m_Name: Cell_2_5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1399243617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399243616}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5800002, y: 6.4500003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1399243618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399243616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 2
+  Y: 5
+  ColorID: 0
+  CellSize: 1.7
+  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1416542530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1416542531}
+  - component: {fileID: 1416542532}
+  m_Layer: 0
+  m_Name: Cell_3_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1416542531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416542530}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.8700004, y: 2.5800002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1416542532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416542530}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
   X: 3
-  Y: 0
+  Y: 2
+  ColorID: 4
+  CellSize: 1.7
+  GizmoColor: {r: 0.5686275, g: 0.6784314, b: 0.03137255, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1417696658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1417696659}
+  - component: {fileID: 1417696660}
+  m_Layer: 0
+  m_Name: Cell_2_6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1417696659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417696658}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5800002, y: 7.7400007, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1417696660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417696658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 2
+  Y: 6
+  ColorID: 3
+  CellSize: 1.7
+  GizmoColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1432428517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1432428518}
+  - component: {fileID: 1432428519}
+  m_Layer: 0
+  m_Name: Cell_1_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1432428518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432428517}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.2900001, y: 3.8700004, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1432428519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432428517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 1
+  Y: 3
+  ColorID: 5
+  CellSize: 1.7
+  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1455486055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1455486056}
+  - component: {fileID: 1455486057}
+  m_Layer: 0
+  m_Name: Cell_4_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1455486056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455486055}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.1600003, y: 1.2900001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1455486057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455486055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 4
+  Y: 1
   ColorID: 0
   CellSize: 1.7
   GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
@@ -991,29 +2841,77 @@ Transform:
   m_GameObject: {fileID: 1468069122}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9350002, y: -1.9350002, z: 0}
+  m_LocalPosition: {x: -4.5150003, y: -4.5150003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1537502081}
-  - {fileID: 1818314413}
-  - {fileID: 1904079700}
-  - {fileID: 1397740137}
-  - {fileID: 962712163}
-  - {fileID: 248674939}
-  - {fileID: 2097931130}
-  - {fileID: 899410918}
-  - {fileID: 1294943616}
-  - {fileID: 558517279}
-  - {fileID: 808394490}
-  - {fileID: 1855118277}
-  - {fileID: 866907229}
-  - {fileID: 611758147}
-  - {fileID: 918358981}
-  - {fileID: 386485665}
+  - {fileID: 692025398}
+  - {fileID: 1189177941}
+  - {fileID: 1287290817}
+  - {fileID: 304161484}
+  - {fileID: 602508039}
+  - {fileID: 2000666063}
+  - {fileID: 1733763654}
+  - {fileID: 1725625445}
+  - {fileID: 1679168150}
+  - {fileID: 899988363}
+  - {fileID: 1211709101}
+  - {fileID: 1177062600}
+  - {fileID: 1455486056}
+  - {fileID: 1334205654}
+  - {fileID: 926360852}
+  - {fileID: 1823443683}
+  - {fileID: 1294634669}
+  - {fileID: 343774855}
+  - {fileID: 621791622}
+  - {fileID: 1416542531}
+  - {fileID: 636455970}
+  - {fileID: 59136171}
+  - {fileID: 1590028961}
+  - {fileID: 272378256}
+  - {fileID: 638589921}
+  - {fileID: 1432428518}
+  - {fileID: 1174472415}
+  - {fileID: 1195254914}
+  - {fileID: 1780692022}
+  - {fileID: 715602570}
+  - {fileID: 1578886333}
+  - {fileID: 1604212174}
+  - {fileID: 200898472}
+  - {fileID: 1860392316}
+  - {fileID: 200363693}
+  - {fileID: 1769453702}
+  - {fileID: 737788097}
+  - {fileID: 731504085}
+  - {fileID: 546856857}
+  - {fileID: 1166076300}
+  - {fileID: 610570384}
+  - {fileID: 1328059476}
+  - {fileID: 1399243617}
+  - {fileID: 1916954849}
+  - {fileID: 1379344900}
+  - {fileID: 2091651025}
+  - {fileID: 906162425}
+  - {fileID: 1618478497}
+  - {fileID: 1925943234}
+  - {fileID: 332080614}
+  - {fileID: 1417696659}
+  - {fileID: 2018332062}
+  - {fileID: 170748309}
+  - {fileID: 16318098}
+  - {fileID: 1062364769}
+  - {fileID: 434991100}
+  - {fileID: 1142540483}
+  - {fileID: 922813074}
+  - {fileID: 121908134}
+  - {fileID: 504915517}
+  - {fileID: 1263998853}
+  - {fileID: 1041353873}
+  - {fileID: 1104872402}
+  - {fileID: 705684145}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1537502080
+--- !u!1 &1578886332
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1021,47 +2919,197 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1537502081}
-  - component: {fileID: 1537502082}
+  - component: {fileID: 1578886333}
+  - component: {fileID: 1578886334}
   m_Layer: 0
-  m_Name: Cell_0_0
+  m_Name: Cell_6_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1537502081
+--- !u!4 &1578886333
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537502080}
+  m_GameObject: {fileID: 1578886332}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 7.7400007, y: 3.8700004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1537502082
+--- !u!114 &1578886334
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537502080}
+  m_GameObject: {fileID: 1578886332}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
-  X: 0
-  Y: 0
-  ColorID: 0
+  X: 6
+  Y: 3
+  ColorID: 5
   CellSize: 1.7
-  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
+  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1590028960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1590028961}
+  - component: {fileID: 1590028962}
+  m_Layer: 0
+  m_Name: Cell_6_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1590028961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590028960}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.7400007, y: 2.5800002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1590028962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590028960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 6
+  Y: 2
+  ColorID: 4
+  CellSize: 1.7
+  GizmoColor: {r: 0.5686275, g: 0.6784314, b: 0.03137255, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1604212173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1604212174}
+  - component: {fileID: 1604212175}
+  m_Layer: 0
+  m_Name: Cell_7_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1604212174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604212173}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.030001, y: 3.8700004, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1604212175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604212173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 7
+  Y: 3
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1618478496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1618478497}
+  - component: {fileID: 1618478498}
+  m_Layer: 0
+  m_Name: Cell_7_5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1618478497
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618478496}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.030001, y: 6.4500003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1618478498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618478496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 7
+  Y: 5
+  ColorID: 2
+  CellSize: 1.7
+  GizmoColor: {r: 0.6784314, g: 0.050980397, b: 0.9921569, a: 0.6}
   ShowGizmo: 1
 --- !u!1 &1651620066
 GameObject:
@@ -1142,6 +3190,256 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1679168149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1679168150}
+  - component: {fileID: 1679168151}
+  m_Layer: 0
+  m_Name: Cell_0_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1679168150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679168149}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2900001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1679168151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679168149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 0
+  Y: 1
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1725625444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1725625445}
+  - component: {fileID: 1725625446}
+  m_Layer: 0
+  m_Name: Cell_7_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1725625445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725625444}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.030001, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1725625446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725625444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 7
+  Y: 0
+  ColorID: 0
+  CellSize: 1.7
+  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1733763653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1733763654}
+  - component: {fileID: 1733763655}
+  m_Layer: 0
+  m_Name: Cell_6_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1733763654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733763653}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.7400007, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1733763655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733763653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 6
+  Y: 0
+  ColorID: 1
+  CellSize: 1.7
+  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1769453701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1769453702}
+  - component: {fileID: 1769453703}
+  m_Layer: 0
+  m_Name: Cell_3_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1769453702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769453701}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.8700004, y: 5.1600003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1769453703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769453701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 3
+  Y: 4
+  ColorID: 3
+  CellSize: 1.7
+  GizmoColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1780692021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1780692022}
+  - component: {fileID: 1780692023}
+  m_Layer: 0
+  m_Name: Cell_4_3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1780692022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780692021}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.1600003, y: 3.8700004, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1780692023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780692021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 4
+  Y: 3
+  ColorID: 0
+  CellSize: 1.7
+  GizmoColor: {r: 0.9960785, g: 0.82745105, b: 0, a: 0.6}
+  ShowGizmo: 1
 --- !u!1 &1807203454
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,7 +3536,7 @@ MonoBehaviour:
   editorGridSortingOrder: 5
   sortingLayerName: Default
   board: {fileID: 1468069123}
---- !u!1 &1818314412
+--- !u!1 &1823443682
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1246,49 +3544,99 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1818314413}
-  - component: {fileID: 1818314414}
+  - component: {fileID: 1823443683}
+  - component: {fileID: 1823443684}
   m_Layer: 0
-  m_Name: Cell_1_0
+  m_Name: Cell_7_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1818314413
+--- !u!4 &1823443683
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818314412}
+  m_GameObject: {fileID: 1823443682}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.2900001, y: 0, z: 0}
+  m_LocalPosition: {x: 9.030001, y: 1.2900001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1818314414
+--- !u!114 &1823443684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818314412}
+  m_GameObject: {fileID: 1823443682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 7
+  Y: 1
+  ColorID: 5
+  CellSize: 1.7
+  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1860392315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1860392316}
+  - component: {fileID: 1860392317}
+  m_Layer: 0
+  m_Name: Cell_1_4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1860392316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860392315}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.2900001, y: 5.1600003, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1860392317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860392315}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
   X: 1
-  Y: 0
-  ColorID: 5
+  Y: 4
+  ColorID: 2
   CellSize: 1.7
-  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
+  GizmoColor: {r: 0.6784314, g: 0.050980397, b: 0.9921569, a: 0.6}
   ShowGizmo: 1
---- !u!1 &1855118276
+--- !u!1 &1916954848
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1296,49 +3644,199 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1855118277}
-  - component: {fileID: 1855118278}
+  - component: {fileID: 1916954849}
+  - component: {fileID: 1916954850}
   m_Layer: 0
-  m_Name: Cell_3_2
+  m_Name: Cell_3_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1855118277
+--- !u!4 &1916954849
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855118276}
+  m_GameObject: {fileID: 1916954848}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.8700004, y: 2.5800002, z: 0}
+  m_LocalPosition: {x: 3.8700004, y: 6.4500003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1855118278
+--- !u!114 &1916954850
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855118276}
+  m_GameObject: {fileID: 1916954848}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
   X: 3
-  Y: 2
+  Y: 5
+  ColorID: 5
+  CellSize: 1.7
+  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &1925943233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1925943234}
+  - component: {fileID: 1925943235}
+  m_Layer: 0
+  m_Name: Cell_0_6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1925943234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925943233}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 7.7400007, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1925943235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925943233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 0
+  Y: 6
+  ColorID: 5
+  CellSize: 1.7
+  GizmoColor: {r: 0.26666668, g: 0.78823537, b: 0.9058824, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &2000666062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2000666063}
+  - component: {fileID: 2000666064}
+  m_Layer: 0
+  m_Name: Cell_5_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2000666063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000666062}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.4500003, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2000666064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000666062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 5
+  Y: 0
+  ColorID: 2
+  CellSize: 1.7
+  GizmoColor: {r: 0.6784314, g: 0.050980397, b: 0.9921569, a: 0.6}
+  ShowGizmo: 1
+--- !u!1 &2018332061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018332062}
+  - component: {fileID: 2018332063}
+  m_Layer: 0
+  m_Name: Cell_3_6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2018332062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018332061}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.8700004, y: 7.7400007, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1468069125}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2018332063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018332061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
+  X: 3
+  Y: 6
   ColorID: 4
   CellSize: 1.7
   GizmoColor: {r: 0.5686275, g: 0.6784314, b: 0.03137255, a: 0.6}
   ShowGizmo: 1
---- !u!1 &1904079699
+--- !u!1 &2091651024
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1346,97 +3844,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1904079700}
-  - component: {fileID: 1904079701}
+  - component: {fileID: 2091651025}
+  - component: {fileID: 2091651026}
   m_Layer: 0
-  m_Name: Cell_2_0
+  m_Name: Cell_5_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1904079700
+--- !u!4 &2091651025
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904079699}
+  m_GameObject: {fileID: 2091651024}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5800002, y: 0, z: 0}
+  m_LocalPosition: {x: 6.4500003, y: 6.4500003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1468069125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1904079701
+--- !u!114 &2091651026
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904079699}
+  m_GameObject: {fileID: 2091651024}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
-  X: 2
-  Y: 0
-  ColorID: 3
+  X: 5
+  Y: 5
+  ColorID: 2
   CellSize: 1.7
-  GizmoColor: {r: 1, g: 0.3647059, b: 0.8313726, a: 0.6}
-  ShowGizmo: 1
---- !u!1 &2097931129
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2097931130}
-  - component: {fileID: 2097931131}
-  m_Layer: 0
-  m_Name: Cell_2_1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2097931130
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097931129}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5800002, y: 1.2900001, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1468069125}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2097931131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097931129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c32e8f259940a594587a984a2cae271c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GridCellInfo
-  X: 2
-  Y: 1
-  ColorID: 1
-  CellSize: 1.7
-  GizmoColor: {r: 0.9215687, g: 0.14117648, b: 0.09411766, a: 0.6}
+  GizmoColor: {r: 0.6784314, g: 0.050980397, b: 0.9921569, a: 0.6}
   ShowGizmo: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
