@@ -2,8 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-
+/// <summary>
 /// Handles block blasting mechanics and animations.
+/// </summary>
 public class BlastSystem
 {
     private readonly GridData gridData;
@@ -53,6 +54,12 @@ public class BlastSystem
             {
                 blastDuration = animator.BlastDuration;
             }
+        }
+
+        // Trigger particle effects
+        if (ParticleManager.Instance != null)
+        {
+            ParticleManager.Instance.PlayBlastGroupEffect(group, config);
         }
 
         // Wait for blast animation

@@ -16,7 +16,7 @@ public class BoardEditor : Editor
 
         // Main Actions
         EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-        EditorGUILayout.LabelField("?? Grid Generation", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Grid Generation", EditorStyles.boldLabel);
 
         if (GUILayout.Button("Generate Grid in Scene", GUILayout.Height(35)))
         {
@@ -31,7 +31,7 @@ public class BoardEditor : Editor
 
         EditorGUILayout.BeginHorizontal();
 
-        if (GUILayout.Button("?? Randomize", GUILayout.Height(25)))
+        if (GUILayout.Button("Randomize", GUILayout.Height(25)))
         {
             if (board.Config != null)
             {
@@ -43,7 +43,7 @@ public class BoardEditor : Editor
             }
         }
 
-        if (GUILayout.Button("?? Clear Grid", GUILayout.Height(25)))
+        if (GUILayout.Button("Clear Grid", GUILayout.Height(25)))
         {
             if (EditorUtility.DisplayDialog("Clear Grid",
                 "Are you sure you want to clear the grid?",
@@ -64,7 +64,7 @@ public class BoardEditor : Editor
 
         // Level Designer Button
         EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-        EditorGUILayout.LabelField("?? Level Design", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Level Design", EditorStyles.boldLabel);
 
         Color oldBg = GUI.backgroundColor;
         GUI.backgroundColor = Color.cyan;
