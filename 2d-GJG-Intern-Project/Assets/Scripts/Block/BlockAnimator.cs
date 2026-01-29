@@ -2,34 +2,21 @@
 using System;
 using System.Collections;
 
+
 public class BlockAnimator : MonoBehaviour
 {
-    [Header("Blast Animation")]
-    [SerializeField] private float blastDuration = 0.2f;
-    [SerializeField] private float blastScaleMultiplier = 1.3f;
-    [SerializeField] private AnimationCurve blastCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-
-    [Header("Spawn Animation")]
-    [SerializeField] private float spawnDuration = 0.2f;
-    [SerializeField] private AnimationCurve spawnCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-
-    [Header("Shuffle Animation")]
-    [SerializeField] private float shuffleDuration = 0.4f;
-    [SerializeField] private float shuffleJumpHeight = 0.5f;
-    [SerializeField] private float shuffleScalePunch = 1.1f;
-    [SerializeField] private AnimationCurve shuffleMoveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-    [SerializeField] private AnimationCurve shuffleJumpCurve;
+    [Header("Animation Data (Shared)")]
+    [Tooltip("Shared animation settings - references same asset for all blocks")]
+    [SerializeField] private BlockAnimationData animationData;
 
     [Header("References")]
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    
     public event Action OnBlastAnimationComplete;
     public event Action OnShuffleAnimationComplete;
 
-    
-    public float BlastDuration => blastDuration;
-    public float ShuffleDuration => shuffleDuration;
+    public float BlastDuration => animationData != null ? animationData.blastDuration : 0.2f;
+    public float ShuffleDuration => animationData != null ? animationData.shuffleDuration : 0.4f;
 
     private Block currentBlock;
     private Coroutine currentAnimation;
@@ -41,19 +28,15 @@ public class BlockAnimator : MonoBehaviour
 
     private void Awake()
     {
-        if (spriteRenderer == null)
-            spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         originalScale = transform.localScale;
 
-        // Initialize shuffle jump curve if not set
-        if (shuffleJumpCurve == null || shuffleJumpCurve.keys.Length == 0)
+        // Validate animation data
+        if (animationData == null)
         {
-            shuffleJumpCurve = new AnimationCurve(
-                new Keyframe(0f, 0f),
-                new Keyframe(0.5f, 1f),
-                new Keyframe(1f, 0f)
-            );
+            Debug.LogWarning($"[BlockAnimator] {gameObject.name} missing BlockAnimationData! Using defaults.");
         }
     }
 
@@ -104,18 +87,14 @@ public class BlockAnimator : MonoBehaviour
         }
     }
 
-    
     public void SetShuffleTarget(Vector3 targetPosition)
     {
         shuffleTargetPosition = targetPosition;
         hasShuffleTarget = true;
-        Debug.Log($"[BlockAnimator] Shuffle target set to {targetPosition}");
     }
 
     private void HandleStateChanged(Block block, BlockState oldState, BlockState newState)
     {
-        Debug.Log($"[BlockAnimator ({block.x},{block.y})] State changed: {oldState} → {newState}");
-
         if (currentAnimation != null)
         {
             StopCoroutine(currentAnimation);
@@ -138,7 +117,7 @@ public class BlockAnimator : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning($"[BlockAnimator] No shuffle target set for block ({block.x},{block.y})!");
+                    Debug.LogWarning($"[BlockAnimator] No shuffle target set!");
                     block.SetState(BlockState.Idle);
                 }
                 break;
@@ -158,19 +137,19 @@ public class BlockAnimator : MonoBehaviour
 
     private IEnumerator PlayBlastAnimation()
     {
-        Debug.Log($"[BlockAnimator] Playing blast animation");
+        if (animationData == null) yield break;
 
         Vector3 startScale = originalScale;
-        Vector3 endScale = originalScale * blastScaleMultiplier;
+        Vector3 endScale = originalScale * animationData.blastScaleMultiplier;
         Color startColor = Color.white;
         Color endColor = new Color(1f, 1f, 1f, 0f);
 
         float elapsed = 0f;
 
-        while (elapsed < blastDuration)
+        while (elapsed < animationData.blastDuration)
         {
             elapsed += Time.deltaTime;
-            float t = blastCurve.Evaluate(elapsed / blastDuration);
+            float t = animationData.blastCurve.Evaluate(elapsed / animationData.blastDuration);
 
             float scaleT = t < 0.5f ? t * 2f : (1f - t) * 2f;
             transform.localScale = Vector3.Lerp(startScale, endScale, scaleT);
@@ -190,14 +169,12 @@ public class BlockAnimator : MonoBehaviour
         }
 
         currentAnimation = null;
-
-        Debug.Log($"[BlockAnimator] Blast animation complete");
         OnBlastAnimationComplete?.Invoke();
     }
 
     private IEnumerator PlaySpawnAnimation()
     {
-        Debug.Log($"[BlockAnimator] Playing spawn animation");
+        if (animationData == null) yield break;
 
         Vector3 startScale = Vector3.zero;
         Vector3 endScale = originalScale;
@@ -206,10 +183,10 @@ public class BlockAnimator : MonoBehaviour
 
         float elapsed = 0f;
 
-        while (elapsed < spawnDuration)
+        while (elapsed < animationData.spawnDuration)
         {
             elapsed += Time.deltaTime;
-            float t = spawnCurve.Evaluate(elapsed / spawnDuration);
+            float t = animationData.spawnCurve.Evaluate(elapsed / animationData.spawnDuration);
 
             transform.localScale = Vector3.Lerp(startScale, endScale, t);
             yield return null;
@@ -221,60 +198,59 @@ public class BlockAnimator : MonoBehaviour
 
     private IEnumerator PlayShuffleAnimation(Vector3 targetPos)
     {
-        Debug.Log($"[BlockAnimator] Playing shuffle animation to {targetPos}");
+        if (animationData == null) yield break;
 
         Vector3 startPos = transform.position;
         Vector3 startScale = originalScale;
-        Vector3 punchScale = originalScale * shuffleScalePunch;
+        Vector3 punchScale = originalScale * animationData.shuffleScalePunch;
 
         float elapsed = 0f;
 
-        while (elapsed < shuffleDuration)
+        while (elapsed < animationData.shuffleDuration)
         {
             elapsed += Time.deltaTime;
-            float t = elapsed / shuffleDuration;
+            float t = elapsed / animationData.shuffleDuration;
 
             // Movement with easing
-            float moveT = shuffleMoveCurve.Evaluate(t);
+            float moveT = animationData.shuffleMoveCurve.Evaluate(t);
             Vector3 currentPos = Vector3.Lerp(startPos, targetPos, moveT);
 
-            // Add jump arc (Y offset)
-            float jumpT = shuffleJumpCurve.Evaluate(t);
-            currentPos.y += jumpT * shuffleJumpHeight;
+            // Add jump arc
+            float jumpT = animationData.shuffleJumpCurve != null
+                ? animationData.shuffleJumpCurve.Evaluate(t)
+                : Mathf.Sin(t * Mathf.PI); // Fallback if curve missing
+
+            currentPos.y += jumpT * animationData.shuffleJumpHeight;
 
             transform.position = currentPos;
 
-            // Scale punch (grow at start, shrink at end)
-            float scaleT;
+            // Scale punch
             if (t < 0.2f)
             {
-                scaleT = t / 0.2f;
+                float scaleT = t / 0.2f;
                 transform.localScale = Vector3.Lerp(startScale, punchScale, scaleT);
             }
             else if (t > 0.8f)
-            {                
-                scaleT = (t - 0.8f) / 0.2f;
+            {
+                float scaleT = (t - 0.8f) / 0.2f;
                 transform.localScale = Vector3.Lerp(punchScale, startScale, scaleT);
             }
             else
-            {               
+            {
                 transform.localScale = punchScale;
             }
 
             yield return null;
         }
 
-        
         transform.position = targetPos;
         transform.localScale = originalScale;
 
         hasShuffleTarget = false;
         currentAnimation = null;
 
-        Debug.Log($"[BlockAnimator] Shuffle animation complete");
         OnShuffleAnimationComplete?.Invoke();
 
-        
         if (currentBlock != null)
         {
             currentBlock.SetState(BlockState.Idle);

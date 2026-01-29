@@ -20,8 +20,8 @@ public class SortingOrderManager : MonoBehaviour
 
     private void Awake()
     {
-            board = FindObjectOfType<Board>();
-            totalRows = board.Height;
+        board = FindObjectOfType<Board>();
+        totalRows = board.Height;
     }
 
     
