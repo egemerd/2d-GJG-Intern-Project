@@ -37,7 +37,7 @@ public class GridManager : MonoBehaviour
         InitializeReferences();
         InitializeSystems();
     }
-
+    
     private void Start()
     {
         Debug.Log("[GridManager] === GAME START ===");
