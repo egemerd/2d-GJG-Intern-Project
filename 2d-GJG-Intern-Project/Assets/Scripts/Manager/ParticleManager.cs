@@ -28,12 +28,6 @@ public class ParticleManager : MonoBehaviour
 
     private void InitializePool()
     {
-        if (blastParticlePrefab == null)
-        {
-            Debug.LogWarning("[ParticleManager] Blast particle prefab not assigned!");
-            return;
-        }
-
         for (int i = 0; i < initialPoolSize; i++)
         {
             CreateParticleInstance();

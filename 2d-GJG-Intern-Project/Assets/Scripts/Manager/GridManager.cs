@@ -55,11 +55,7 @@ public class GridManager : MonoBehaviour
         config = board.Config;
         sortingOrderManager = GetComponent<SortingOrderManager>();
 
-        if (board == null || blockPool == null || config == null)
-        {
-            Debug.LogError("[GridManager] Missing required references!");
-            enabled = false;
-        }
+        
     }
 
     private void InitializeSystems()

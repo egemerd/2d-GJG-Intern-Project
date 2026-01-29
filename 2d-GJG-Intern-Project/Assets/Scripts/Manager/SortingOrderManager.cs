@@ -87,21 +87,5 @@ public class SortingOrderManager : MonoBehaviour
     }
 
     
-    [ContextMenu("Debug Sorting Order Info")]
-    public void DebugSortingOrderInfo()
-    {
-        Debug.Log("=== SORTING ORDER INFO ===");
-        Debug.Log($"Total Rows: {totalRows}");
-        Debug.Log($"Base Sorting Order: {baseSortingOrder}");
-        Debug.Log($"Editor Grid Order: {editorGridSortingOrder}");
-        Debug.Log($"Sorting Layer: {sortingLayerName}");
-        Debug.Log($"\nBlock Sorting Orders (TOP rows in FRONT):");
-        Debug.Log($"  TOP Row (Y={totalRows - 1}): {GetSortingOrder(totalRows - 1)} ← FRONTMOST ✅");
-        for (int i = totalRows - 2; i > 0; i--)
-        {
-            Debug.Log($"  Row (Y={i}): {GetSortingOrder(i)}");
-        }
-        Debug.Log($"  BOTTOM Row (Y=0): {GetSortingOrder(0)}  BACKMOST");
-        Debug.Log($"\nRange: {GetMinBlockSortingOrder()} to {GetMaxBlockSortingOrder()}");
-    }
+    
 }
