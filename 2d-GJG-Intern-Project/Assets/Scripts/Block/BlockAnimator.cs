@@ -23,11 +23,11 @@ public class BlockAnimator : MonoBehaviour
     [Header("References")]
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    // Events
+    
     public event Action OnBlastAnimationComplete;
     public event Action OnShuffleAnimationComplete;
 
-    // Expose durations for GridManager
+    
     public float BlastDuration => blastDuration;
     public float ShuffleDuration => shuffleDuration;
 
@@ -35,7 +35,7 @@ public class BlockAnimator : MonoBehaviour
     private Coroutine currentAnimation;
     private Vector3 originalScale;
 
-    // Shuffle target position (set by GridManager before state change)
+    
     private Vector3 shuffleTargetPosition;
     private bool hasShuffleTarget = false;
 
@@ -104,10 +104,7 @@ public class BlockAnimator : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Set the target position for shuffle animation.
-    /// Call this BEFORE setting block state to Shuffling.
-    /// </summary>
+    
     public void SetShuffleTarget(Vector3 targetPosition)
     {
         shuffleTargetPosition = targetPosition;
@@ -251,26 +248,23 @@ public class BlockAnimator : MonoBehaviour
             float scaleT;
             if (t < 0.2f)
             {
-                // Grow phase
                 scaleT = t / 0.2f;
                 transform.localScale = Vector3.Lerp(startScale, punchScale, scaleT);
             }
             else if (t > 0.8f)
-            {
-                // Shrink phase
+            {                
                 scaleT = (t - 0.8f) / 0.2f;
                 transform.localScale = Vector3.Lerp(punchScale, startScale, scaleT);
             }
             else
-            {
-                // Hold punch scale
+            {               
                 transform.localScale = punchScale;
             }
 
             yield return null;
         }
 
-        // Ensure final position and scale
+        
         transform.position = targetPos;
         transform.localScale = originalScale;
 
@@ -280,7 +274,7 @@ public class BlockAnimator : MonoBehaviour
         Debug.Log($"[BlockAnimator] Shuffle animation complete");
         OnShuffleAnimationComplete?.Invoke();
 
-        // Transition to Idle
+        
         if (currentBlock != null)
         {
             currentBlock.SetState(BlockState.Idle);

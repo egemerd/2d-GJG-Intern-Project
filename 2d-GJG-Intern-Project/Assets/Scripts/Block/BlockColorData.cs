@@ -28,9 +28,7 @@ public class BlockColorData : ScriptableObject
         };
     }
 
-    /// <summary>
-    /// Get the display color with optional alpha override
-    /// </summary>
+    
     public Color GetGizmoColor(float alpha = 0.6f)
     {
         return new Color(DisplayColor.r, DisplayColor.g, DisplayColor.b, alpha);

@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Object pool for blocks to optimize performance
-/// </summary>
 public class BlockPool : MonoBehaviour
 {
     [SerializeField] private GameObject blockPrefab;
@@ -52,7 +49,7 @@ public class BlockPool : MonoBehaviour
         {
             // Pool exhausted, create new block
             block = CreateNewBlock();
-            availableBlocks.Dequeue(); // Remove it from queue since we're using it
+            availableBlocks.Dequeue(); 
             Debug.LogWarning("Block pool exhausted! Creating new block. Consider increasing pool size.");
         }
 

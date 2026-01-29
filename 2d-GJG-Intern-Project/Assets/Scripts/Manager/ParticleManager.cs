@@ -1,8 +1,5 @@
 using UnityEngine;
 
-
-/// Manages particle effects for game events.
-/// Uses object pooling for performance.
 public class ParticleManager : MonoBehaviour
 {
     [Header("Particle Prefabs")]
@@ -64,28 +61,26 @@ public class ParticleManager : MonoBehaviour
     }
 
 
-    /// Play blast particle effect at world position with block color.
     public void PlayBlastEffect(Vector3 position, Color blockColor, int particleCount = 15)
     {
         ParticleSystem ps = GetParticleFromPool();
         if (ps == null) return;
 
-        // Position the particle system
         ps.transform.position = position;
         ps.gameObject.SetActive(true);
 
-        // Set color based on block color
+
         var main = ps.main;
         main.startColor = new ParticleSystem.MinMaxGradient(blockColor, blockColor * 0.7f);
 
-        // Adjust particle count dynamically
+        
         var emission = ps.emission;
         emission.SetBurst(0, new ParticleSystem.Burst(0f, (short)particleCount));
 
-        // Play the effect
+        
         ps.Play();
 
-        // Return to pool after duration
+        
         StartCoroutine(ReturnToPoolAfterDuration(ps, main.duration + main.startLifetime.constantMax));
     }
 
@@ -96,7 +91,7 @@ public class ParticleManager : MonoBehaviour
             return particlePool.Dequeue();
         }
 
-        // Pool exhausted, create new instance
+        
         Debug.LogWarning("[ParticleManager] Particle pool exhausted, creating new instance");
         return CreateParticleInstance();
     }
@@ -115,7 +110,7 @@ public class ParticleManager : MonoBehaviour
     }
 
 
-    /// Play multiple blast effects for a group of blocks.
+    
     public void PlayBlastGroupEffect(System.Collections.Generic.List<Block> group, LevelConfig config)
     {
         if (group == null || group.Count == 0) return;

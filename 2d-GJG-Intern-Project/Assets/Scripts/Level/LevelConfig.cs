@@ -37,8 +37,6 @@ public class LevelConfig : ScriptableObject
     [HideInInspector] public int[] InitialGridData;
 
     public float TotalCellSpacing => CellSize + CellPadding;
-
-    // Runtime helpers
     public int ColorCount => AvailableColors.Count;
 
     public void InitializeGridData()

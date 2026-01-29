@@ -2,24 +2,23 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-/// Handles group detection using flood fill algorithm.
 public class GroupDetector
 {
     private readonly GridData gridData;
     private readonly LevelConfig config;
     private readonly int minGroupSize;
 
-    // Reusable collections to avoid GC
+    //Reusable collections to avoid GC
     private readonly Queue<Vector2Int> floodFillQueue = new Queue<Vector2Int>(100);
     private readonly HashSet<Vector2Int> visitedCells = new HashSet<Vector2Int>();
     private readonly List<Block> currentGroup = new List<Block>(100);
 
     private static readonly Vector2Int[] Directions = new Vector2Int[]
     {
-        new Vector2Int(0, 1),   // Up
-        new Vector2Int(0, -1),  // Down
-        new Vector2Int(-1, 0),  // Left
-        new Vector2Int(1, 0)    // Right
+        new Vector2Int(0, 1),   
+        new Vector2Int(0, -1),  
+        new Vector2Int(-1, 0),  
+        new Vector2Int(1, 0)    
     };
 
     public GroupDetector(GridData gridData, LevelConfig config, int minGroupSize)
@@ -29,7 +28,6 @@ public class GroupDetector
         this.minGroupSize = minGroupSize;
     }
 
-    /// Find connected group of same-colored blocks starting from position.
     public List<Block> FindConnectedGroup(int startX, int startY)
     {
         Block startBlock = gridData.GetBlock(startX, startY);
@@ -78,7 +76,7 @@ public class GroupDetector
         return currentGroup.Count >= minGroupSize ? new List<Block>(currentGroup) : null;
     }
 
-    /// Update all block icons based on their group sizes.
+
     public void UpdateAllGroupIcons()
     {
         visitedCells.Clear();

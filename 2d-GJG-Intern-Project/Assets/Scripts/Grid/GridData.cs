@@ -1,7 +1,6 @@
 using UnityEngine;
 
 
-/// Holds the grid data. Separates data from logic.
 public class GridData
 {
     private Block[,] blocks;

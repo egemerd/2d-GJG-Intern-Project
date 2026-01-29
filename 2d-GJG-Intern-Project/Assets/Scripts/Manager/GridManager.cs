@@ -1,17 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-/// <summary>
-/// Coordinates all grid systems. Acts as a facade for grid operations.
-/// Follows Single Responsibility Principle - only coordinates, doesn't implement logic.
-/// </summary>
 public class GridManager : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private Board board;
-    [SerializeField] private BlockPool blockPool;
-    [SerializeField] private LevelConfig config;
-    [SerializeField] private SortingOrderManager sortingOrderManager;
+    
+    private Board board;
+    private BlockPool blockPool;
+    private LevelConfig config;
+    private SortingOrderManager sortingOrderManager;
 
     [Header("Gameplay Settings")]
     [SerializeField] private int minGroupSize = 2;
@@ -28,11 +24,11 @@ public class GridManager : MonoBehaviour
     private GravitySystem gravitySystem;
     private ShuffleSystem shuffleSystem;
 
-    // State
+
     private bool isProcessing = false;
     public bool IsProcessing => isProcessing;
 
-    // Public accessors
+    
     public int Rows => gridData.Rows;
     public int Columns => gridData.Columns;
 
@@ -54,10 +50,10 @@ public class GridManager : MonoBehaviour
 
     private void InitializeReferences()
     {
-        if (board == null) board = FindObjectOfType<Board>();
-        if (blockPool == null) blockPool = GetComponent<BlockPool>();
-        if (config == null && board != null) config = board.Config;
-        if (sortingOrderManager == null) sortingOrderManager = GetComponent<SortingOrderManager>();
+        board = FindObjectOfType<Board>();
+        blockPool = GetComponent<BlockPool>();
+        config = board.Config;
+        sortingOrderManager = GetComponent<SortingOrderManager>();
 
         if (board == null || blockPool == null || config == null)
         {
@@ -68,10 +64,8 @@ public class GridManager : MonoBehaviour
 
     private void InitializeSystems()
     {
-        // Create data container
         gridData = new GridData(board.Width, board.Height);
 
-        // Create systems
         blockSpawner = new BlockSpawner(gridData, board, blockPool, config, sortingOrderManager);
         groupDetector = new GroupDetector(gridData, config, minGroupSize);
         deadlockChecker = new DeadlockChecker(gridData, groupDetector, minGroupSize);
@@ -79,7 +73,6 @@ public class GridManager : MonoBehaviour
         gravitySystem = new GravitySystem(gridData, board, blockSpawner, sortingOrderManager, this);
         shuffleSystem = new ShuffleSystem(gridData, board, config, sortingOrderManager, this, minGroupSize, guaranteedColorCount);
 
-        // Wire up events
         blastSystem.OnBlastComplete += OnBlastComplete;
         gravitySystem.OnGravityComplete += OnGravityComplete;
         shuffleSystem.OnShuffleComplete += OnShuffleComplete;
@@ -87,7 +80,7 @@ public class GridManager : MonoBehaviour
         Debug.Log($"[GridManager] Systems initialized: {Columns}x{Rows} grid");
     }
 
-    #region Public API
+    
 
     public bool CanProcessInput()
     {
@@ -124,9 +117,7 @@ public class GridManager : MonoBehaviour
         return gridData.IsValidPosition(x, y);
     }
 
-    #endregion
-
-    #region Event Handlers
+    
 
     private void OnBlastComplete()
     {
@@ -170,11 +161,10 @@ public class GridManager : MonoBehaviour
         Debug.Log("[GridManager] === READY FOR INPUT ===");
     }
 
-    #endregion
+
 
     private void OnDestroy()
     {
-        // Unsubscribe events
         if (blastSystem != null) blastSystem.OnBlastComplete -= OnBlastComplete;
         if (gravitySystem != null) gravitySystem.OnGravityComplete -= OnGravityComplete;
         if (shuffleSystem != null) shuffleSystem.OnShuffleComplete -= OnShuffleComplete;

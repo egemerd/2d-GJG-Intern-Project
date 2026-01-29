@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-/// <summary>
-/// Custom editor for GridCellInfo with visual sprite preview in Scene view.
-/// </summary>
+
 [CustomEditor(typeof(GridCellInfo))]
 [CanEditMultipleObjects]
 public class GridCellInfoEditor : Editor
@@ -91,7 +89,7 @@ public class GridCellInfoEditor : Editor
     }
 
 
-    // Replace the GetGizmoColor method with this:
+    
     private Color GetGizmoColor(int colorID)
     {
         // Try to get actual color from BlockColorData

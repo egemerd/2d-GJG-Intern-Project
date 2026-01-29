@@ -4,10 +4,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-/// <summary>
-/// Component that stores information about a single grid cell.
-/// Attached to each cell GameObject in the grid.
-/// </summary>
+
 public class GridCellInfo : MonoBehaviour
 {
     [Header("Grid Position")]
@@ -31,10 +28,10 @@ public class GridCellInfo : MonoBehaviour
     [Tooltip("Show/hide gizmo in Scene view")]
     public bool ShowGizmo = true;
 
-    // NEW: Hide sprite at runtime
+
     private void Start()
     {
-        // Hide the sprite renderer at runtime (keep only editor visualization)
+
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         if (sr != null)
         {
@@ -42,34 +39,26 @@ public class GridCellInfo : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Get the world position of this cell's center
-    /// </summary>
+    
     public Vector3 GetCenterPosition()
     {
         return transform.position;
     }
 
-    /// <summary>
-    /// Check if this cell is at a specific grid position
-    /// </summary>
+    
     public bool IsAt(int x, int y)
     {
         return X == x && Y == y;
     }
 
-    /// <summary>
-    /// Get grid coordinates as Vector2Int
-    /// </summary>
+   
     public Vector2Int GetGridPosition()
     {
         return new Vector2Int(X, Y);
     }
 
 #if UNITY_EDITOR
-    /// <summary>
-    /// Draw gizmos in Scene view to visualize the cell
-    /// </summary>
+    
     private void OnDrawGizmos()
     {
         if (!ShowGizmo) return;
@@ -82,7 +71,7 @@ public class GridCellInfo : MonoBehaviour
         Gizmos.color = new Color(GizmoColor.r, GizmoColor.g, GizmoColor.b, 1f);
         Gizmos.DrawWireCube(transform.position, new Vector3(CellSize * 0.9f, CellSize * 0.9f, 0.01f));
 
-        // Draw coordinate label
+        
         GUIStyle style = new GUIStyle
         {
             normal = new GUIStyleState { textColor = Color.white },
@@ -94,9 +83,7 @@ public class GridCellInfo : MonoBehaviour
         Handles.Label(transform.position, $"{ColorID}", style);
     }
 
-    /// <summary>
-    /// Draw additional info when selected
-    /// </summary>
+    
     private void OnDrawGizmosSelected()
     {
         // Highlight when selected

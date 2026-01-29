@@ -1,7 +1,5 @@
 using UnityEngine;
 
-
-/// Checks if the grid is in a deadlock state (no valid moves).
 public class DeadlockChecker
 {
     private readonly GridData gridData;
@@ -15,7 +13,7 @@ public class DeadlockChecker
         this.minGroupSize = minGroupSize;
     }
 
-    /// Check if no valid groups exist on the grid.
+    
     public bool IsDeadlock()
     {
         for (int y = 0; y < gridData.Rows; y++)

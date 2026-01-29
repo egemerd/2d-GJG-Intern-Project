@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-/// Handles gravity (blocks falling) and refilling empty spaces.
+
 public class GravitySystem
 {
     private readonly GridData gridData;
@@ -31,7 +31,7 @@ public class GravitySystem
     }
 
 
-    /// Apply gravity and refill empty spaces.
+
     public void ApplyGravityAndRefill()
     {
         coroutineRunner.StartCoroutine(GravityRoutine());
@@ -52,7 +52,7 @@ public class GravitySystem
 
         Debug.Log($"[GravitySystem] Falling: {fallingBlocks.Count}, Spawning: {spawningBlocks.Count}");
 
-        // Animate all blocks
+  
         List<Coroutine> animations = new List<Coroutine>();
 
         foreach (Block block in fallingBlocks)
@@ -67,7 +67,7 @@ public class GravitySystem
             animations.Add(coroutineRunner.StartCoroutine(AnimateBlockFall(block, targetPos)));
         }
 
-        // Wait for all animations
+       
         foreach (var anim in animations)
         {
             yield return anim;
@@ -81,7 +81,7 @@ public class GravitySystem
     {
         int writeY = 0;
 
-        // Compact existing blocks (gravity)
+     
         for (int y = 0; y < gridData.Rows; y++)
         {
             Block block = gridData.GetBlock(x, y);
@@ -89,7 +89,6 @@ public class GravitySystem
             {
                 if (writeY != y)
                 {
-                    // Move block down
                     gridData.SetBlock(x, writeY, block);
                     gridData.ClearBlock(x, y);
 
@@ -103,7 +102,6 @@ public class GravitySystem
             }
         }
 
-        // Spawn new blocks to fill empty spaces
         int blocksToSpawn = gridData.Rows - writeY;
         for (int i = 0; i < blocksToSpawn; i++)
         {

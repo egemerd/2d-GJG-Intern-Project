@@ -2,9 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-/// <summary>
-/// Handles block blasting mechanics and animations.
-/// </summary>
+
 public class BlastSystem
 {
     private readonly GridData gridData;
@@ -26,9 +24,7 @@ public class BlastSystem
         this.coroutineRunner = coroutineRunner;
     }
 
-    /// <summary>
-    /// Blast a group of blocks.
-    /// </summary>
+    
     public void BlastGroup(List<Block> group)
     {
         if (group == null || group.Count < 2) return;
@@ -56,7 +52,7 @@ public class BlastSystem
             }
         }
 
-        // Trigger particle effects
+        
         if (ParticleManager.Instance != null)
         {
             ParticleManager.Instance.PlayBlastGroupEffect(group, config);

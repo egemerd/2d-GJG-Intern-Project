@@ -1,8 +1,6 @@
 using UnityEngine;
 
-/// <summary>
-/// Stores grid position and color data for generated blocks
-/// </summary>
+
 public class BlockMetadata : MonoBehaviour
 {
     public int GridX;

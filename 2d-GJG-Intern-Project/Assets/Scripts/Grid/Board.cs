@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// Board manages the static grid structure created in the editor.
-/// GridManager uses this board to spawn runtime blocks.
-/// </summary>
+
 public class Board : MonoBehaviour
 {
     [SerializeField] private LevelConfig config;
@@ -27,9 +24,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Index all cells for fast lookup
-    /// </summary>
+   
     private void IndexCells()
     {
         cells = new GridCellInfo[width, height];
@@ -49,9 +44,7 @@ public class Board : MonoBehaviour
         Debug.Log($"✓ Board indexed: {width}x{height} cells");
     }
 
-    /// <summary>
-    /// Get cell at grid position
-    /// </summary>
+    
     public GridCellInfo GetCell(int x, int y)
     {
         if (x < 0 || x >= width || y < 0 || y >= height)
@@ -60,18 +53,14 @@ public class Board : MonoBehaviour
         return cells[x, y];
     }
 
-    /// <summary>
-    /// Get world position of cell center
-    /// </summary>
+    
     public Vector3 GetCellWorldPosition(int x, int y)
     {
         GridCellInfo cell = GetCell(x, y);
         return cell != null ? cell.GetCenterPosition() : Vector3.zero;
     }
 
-    /// <summary>
-    /// Get spawn position ABOVE the grid for dropping blocks
-    /// </summary>
+    
     public Vector3 GetSpawnPosition(int x, int dropDistance)
     {
         // Get the topmost cell position
@@ -88,17 +77,13 @@ public class Board : MonoBehaviour
 
     #region Editor Methods
 
-    /// <summary>
-    /// Called from Editor to generate grid visuals WITH randomization
-    /// </summary>
+    
     public void GenerateGridInEditor()
     {
         GenerateGridInEditor(randomize: true);
     }
 
-    /// <summary>
-    /// Called from Editor to generate grid visuals
-    /// </summary>
+    
     /// <param name="randomize">If true, randomizes grid data. If false, preserves existing data.</param>
     public void GenerateGridInEditor(bool randomize)
     {
@@ -114,21 +99,20 @@ public class Board : MonoBehaviour
             return;
         }
 
-        // Initialize grid data if needed (without randomizing if not requested)
+ 
         if (randomize)
         {
             RegenerateGridData();
         }
         else
         {
-            // Just ensure data exists, don't randomize
             EnsureGridDataExists();
         }
 
-        // Clear existing grid
+        
         ClearGrid();
 
-        // Generate grid
+        
         width = config.columns;
         height = config.rows;
         float spacing = config.TotalCellSpacing;
@@ -145,22 +129,18 @@ public class Board : MonoBehaviour
         Debug.Log($"✓ Grid generated: {width}x{height} cells with {config.ColorCount} colors (randomize: {randomize})");
     }
 
-    /// <summary>
-    /// Ensure grid data exists without randomizing existing data
-    /// </summary>
+    
     private void EnsureGridDataExists()
     {
         if (config.InitialGridData == null || config.InitialGridData.Length != config.rows * config.columns)
         {
             config.InitializeGridData();
         }
-        // Validate existing colors without randomizing
+
         ValidateExistingColors();
     }
 
-    /// <summary>
-    /// Validate that all color IDs in grid data are available, replace only invalid ones
-    /// </summary>
+    
     private void ValidateExistingColors()
     {
         if (config.AvailableColors == null || config.AvailableColors.Count == 0)
@@ -184,9 +164,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Regenerate grid data to use only current AvailableColors (with randomization)
-    /// </summary>
+    
     private void RegenerateGridData()
     {
         if (config.AvailableColors == null || config.AvailableColors.Count == 0)
@@ -195,10 +173,7 @@ public class Board : MonoBehaviour
             return;
         }
 
-        // Initialize if needed
         config.InitializeGridData();
-
-        // Force randomize with current colors
         config.RandomizeGrid();
 
         Debug.Log($"[Board] Regenerated grid data with {config.ColorCount} colors");
@@ -233,7 +208,7 @@ public class Board : MonoBehaviour
         // Only use gizmos for visualization in editor
         cellInfo.GizmoColor = GetGizmoColorForID(colorID);
 
-        // Remove SpriteRenderer if cellPrefab has one
+
         SpriteRenderer sr = cell.GetComponent<SpriteRenderer>();
         if (sr != null)
         {
@@ -241,10 +216,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Get a valid ColorID for the given position
-    /// If the stored ColorID is invalid, replace with a random valid one
-    /// </summary>
+    
     private int GetValidColorID(int x, int y)
     {
         int colorID = config.GetColorIDAt(x, y);
@@ -254,18 +226,16 @@ public class Board : MonoBehaviour
         {
             Debug.LogWarning($"[Board] ColorID {colorID} at ({x},{y}) not available. Using random color.");
 
-            // Get random valid color
             var randomColor = config.GetRandomColorData();
             if (randomColor != null)
             {
                 colorID = randomColor.ColorID;
-                // Update the grid data
                 config.SetColorIDAt(x, y, colorID);
             }
             else
             {
                 Debug.LogError("[Board] No valid colors available!");
-                colorID = 0; // Fallback
+                colorID = 0; 
             }
         }
 
@@ -295,7 +265,6 @@ public class Board : MonoBehaviour
 
     private Color GetGizmoColorForID(int colorID)
     {
-        // Try to get actual color from BlockColorData
         if (config != null)
         {
             BlockColorData colorData = config.GetColorData(colorID);
@@ -305,7 +274,7 @@ public class Board : MonoBehaviour
             }
         }
 
-        // Fallback colors if BlockColorData not found
+
         Color[] fallbackColors = new Color[]
         {
             new Color(1f, 0.3f, 0.3f, 0.6f),

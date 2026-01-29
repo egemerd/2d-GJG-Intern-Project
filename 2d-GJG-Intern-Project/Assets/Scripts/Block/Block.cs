@@ -4,11 +4,11 @@ using UnityEngine;
 [System.Serializable]
 public enum BlockState
 {
-    Idle,       // Ready for interaction
-    Blasting,   // Being destroyed
-    Falling,    // Dropping down
-    Spawning,   // Just created, animating in
-    Shuffling   // Being shuffled to new position
+    Idle,       
+    Blasting,   
+    Falling,   
+    Spawning,   
+    Shuffling   
 }
 
 public class Block
@@ -19,7 +19,7 @@ public class Block
     public int GroupSize;
     public BlockIconType IconType;
 
-    // State management
+    
     private BlockState _state = BlockState.Idle;
     public BlockState State
     {
@@ -27,10 +27,9 @@ public class Block
         private set => _state = value;
     }
 
-    // Event fired when state changes
+    
     public event Action<Block, BlockState, BlockState> OnStateChanged;
 
-    // Object pooling reference
     public GameObject VisualObject;
 
     public Block(int x, int y, int colorID)
@@ -59,9 +58,7 @@ public class Block
         SetState(BlockState.Spawning);
     }
 
-    /// <summary>
-    /// Change block state with debug logging and event firing.
-    /// </summary>
+    
     public void SetState(BlockState newState)
     {
         if (_state == newState) return;
@@ -75,9 +72,7 @@ public class Block
         OnStateChanged?.Invoke(this, oldState, newState);
     }
 
-    /// <summary>
-    /// Can this block be clicked?
-    /// </summary>
+    
     public bool CanInteract()
     {
         bool canInteract = _state == BlockState.Idle;
@@ -90,9 +85,7 @@ public class Block
         return canInteract;
     }
 
-    /// <summary>
-    /// Can this block be included in group detection?
-    /// </summary>
+    
     public bool CanBeGrouped()
     {
         return _state == BlockState.Idle;

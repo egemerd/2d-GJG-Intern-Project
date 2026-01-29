@@ -1,7 +1,6 @@
 using UnityEngine;
 
 
-/// Handles block spawning and visual setup.
 public class BlockSpawner
 {
     private readonly GridData gridData;
@@ -24,7 +23,7 @@ public class BlockSpawner
         this.sortingOrderManager = sortingOrderManager;
     }
 
-    /// Spawn all blocks based on board cell data.
+
     public void SpawnAllBlocks()
     {
         Debug.Log("[BlockSpawner] Spawning all blocks...");
@@ -45,7 +44,6 @@ public class BlockSpawner
     }
 
 
-    /// Spawn a single block at grid position.
     public Block SpawnBlock(int x, int y, int colorID, bool setIdleImmediately = false)
     {
         GameObject blockObj = blockPool.GetBlock();
@@ -71,7 +69,6 @@ public class BlockSpawner
     }
 
 
-    /// Spawn a block for refill (spawns above grid, will fall down).
     public Block SpawnBlockForRefill(int x, int y, int spawnIndex)
     {
         BlockColorData randomColor = config.GetRandomColorData();
@@ -121,7 +118,6 @@ public class BlockSpawner
     }
 
 
-    /// Update block metadata after position change.
     public void UpdateBlockMetadata(Block block, int newX, int newY)
     {
         if (block?.VisualObject == null) return;
