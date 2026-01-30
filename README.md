@@ -4,14 +4,14 @@ This project was developed with a primary focus on **high-performance engineerin
 
 ---
 
-## ⚡ Performance Optimization
+##  Performance Optimization
 * **Draw Call Reduction:** Utilized **Sprite Atlases** to batch textures and minimize GPU overhead.
 * **Memory Management:** Implemented an **Object Pooling System** for blocks and particle effects to prevent Garbage Collection (GC) spikes.
 * **State Machine Management:** Orchestrates transitions between game states to ensure logical execution order and lock player input during cascading operations like blasting and refilling.
 
 ---
 
-## 🏗️ Design Patterns
+##  Design Patterns
 * **Facade Pattern (`GridManager`):** Acts as the central hub to coordinate and manage all specialized subsystems, ensuring a modular and organized game loop.
 * **Observer Pattern:** Leverages **C# events** to decouple systems (e.g., `BlastSystem`, `GravitySystem`), allowing them to communicate without direct dependencies.
 * **Data-Driven Design:** Uses **ScriptableObjects** for level setups, enabling easy adjustment of rows ($M$), columns ($N$), and color counts ($K$).
@@ -20,7 +20,7 @@ This project was developed with a primary focus on **high-performance engineerin
 
 ---
 
-## 🧩 Intelligent Deadlock Resolution
+##  Intelligent Deadlock Resolution
 To avoid "blindly shuffling," the game features a strategic **Shuffle System** that guarantees a playable state.
 
 * **Guaranteed Match Selection:** * The system filters colors that meet the minimum requirement of at least 2 blocks.
@@ -34,7 +34,7 @@ To avoid "blindly shuffling," the game features a strategic **Shuffle System** t
 
 ---
 
-## 🛠️ Level Design Tooling
+##  Level Design Tooling
 Developed a custom editor tool suite to enable designers to easily create and iterate on level layouts.
 
 * **Custom Editor Window:** A dedicated interface to streamline the initial level creation process for designers.
