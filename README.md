@@ -1,4 +1,4 @@
-# 🚀 GJG Case Study: Collapse/Blast Mechanic
+# GJG Case Study: Collapse/Blast Mechanic
 
 This project was developed with a primary focus on **high-performance engineering**, specifically optimizing memory, CPU, and GPU usage to ensure a "healthy and efficient heart" for the gameplay experience.
 
@@ -43,7 +43,3 @@ Developed a custom editor tool suite to enable designers to easily create and it
 
 ---
 
-### **Final Submission Checklist**
-* [ ] **Library folder** excluded from the ZIP.
-* [ ] **Assets, Packages, and ProjectSettings** folders included.
-* [ ] Core mechanics ($M, N, K, A, B, C$) fully implemented.
